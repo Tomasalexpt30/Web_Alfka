@@ -12,12 +12,12 @@ import {
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDdoWPCDgI4jLGDBBB1bJKMxs8URQBeDFI",
-  authDomain: "alfkaweb.firebaseapp.com",
-  projectId: "alfkaweb",
-  storageBucket: "alfkaweb.firebasestorage.app",
-  messagingSenderId: "76820480050",
-  appId: "1:76820480050:web:fd376cbe9539e94ae27c2b",
+  apiKey: "Removed for security reasons",
+  authDomain: "Removed for security reasons",
+  projectId: "Removed for security reasons",
+  storageBucket: "Removed for security reasons",
+  messagingSenderId: "Removed for security reasons",
+  appId: "Removed for security reasons",
 };
 
 
