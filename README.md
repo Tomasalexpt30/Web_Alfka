@@ -1,9 +1,9 @@
 <div align="center">
 
-# WEB_ALFKA
+# Alfka Website
 
 <p align="center">
-  <img src="images/logo.png" width="180">
+  <img src="images/logos/alfka.png" width="180">
 </p>
 
 ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
@@ -11,7 +11,7 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
 
-### Alfka — Online Home Appliances Store
+### Course — Web Development 2024/2025
 
 *A fully functional e-commerce website for **home appliances**, featuring product browsing, user authentication, cart management, and a seamless checkout experience.*
 
@@ -19,7 +19,7 @@
 
 ## Main Goal
 
-WEB_ALFKA is a front-end web application built with **HTML, CSS, and JavaScript**, integrated with **Firebase** for user authentication and data persistence. It replicates a real-world online retail experience for home appliances — from browsing products to completing a purchase.
+WEB_ALFKA is a front-end web application built with **HTML, CSS, and JavaScript**, integrated with **Firebase** for user authentication. It replicates a real-world online retail experience for home appliances, from browsing products to completing a purchase.
 
 - Multi-page product catalogue organized by appliance category
 - User registration, login, and session management via Firebase
@@ -43,6 +43,10 @@ WEB_ALFKA is a front-end web application built with **HTML, CSS, and JavaScript*
 
 ### 1. Home Page (`main-page.html`)
 
+<p align="center">
+  <img src="images/panels/1.png" width="500">
+</p>
+
 The Home Page is the **entry point of the Alfka experience**. It features a rotating hero banner showcasing promotions and key products, followed by a horizontal scrollable product category navigator with icons for Fridges, Washing Machines, Dishwashers, Ovens, Microwaves, Exhaustors, Thermoacumulators, and Air Conditioning.
 
 Below the categories, two carousels display:
@@ -51,7 +55,11 @@ Below the categories, two carousels display:
 
 The bottom of the page features a **trusted reviews section** with customer testimonials, a benefits strip (fast delivery, returns, customer support, certified products), newsletter subscription, and the full footer.
 
-### 2. Product Overview Pages
+#### 1.1. Product Overview
+
+<p align="center">
+  <img src="images/panels/2.png" width="500">
+</p>
 
 Each appliance category has its own dedicated overview page:
 
@@ -62,7 +70,20 @@ Each appliance category has its own dedicated overview page:
 
 These pages list all products in a category with product cards showing the item name, original PVP price, discounted price, energy rating badge, and discount percentage label. Users can click any card to navigate to the respective product detail page.
 
-### 3. Product Detail Pages
+#### 1.2. Trustworthy Reviews
+
+<p align="center">
+  <img src="images/panels/3.png" width="500">
+</p>
+
+### 2. Product Detail Pages
+
+<p align="center">
+  <img src="images/panels/5.png" width="500">
+  <img src="images/panels/6.png" width="500">
+  <img src="images/panels/7.png" width="500">
+  <img src="images/panels/8.png" width="500">
+</p>
 
 Each product has a dedicated detail page (e.g., `fridge-page.html`, `oven-page.html`) that provides a complete view of the item:
 
@@ -76,7 +97,11 @@ Each product has a dedicated detail page (e.g., `fridge-page.html`, `oven-page.h
 - **Opiniões do Produto (Reviews)** — star rating breakdown and individual customer reviews
 - **Produtos Relacionados** — horizontal carousel of similar products
 
-### 4. Login & Registration (`login-page.html`)
+### 3. Login & Registration (`login-page.html`)
+
+<p align="center">
+  <img src="images/panels/4.png" width="500">
+</p>
 
 The login page is split into two panels:
 
@@ -86,7 +111,7 @@ The login page is split into two panels:
 
 Both flows are powered by **Firebase Authentication**, ensuring secure credential handling and persistent sessions across the website.
 
-### 5. Scripts Architecture
+### 4. Scripts Architecture
 
 The JavaScript is modularized across dedicated script files:
 
@@ -166,15 +191,16 @@ git clone https://github.com/<your-username>/WEB_ALFKA.git
 | **CSS3** | Styling, layout, and responsive design |
 | **JavaScript (ES6+)** | Dynamic behaviour, DOM manipulation, event handling |
 | **Firebase Authentication** | User login, registration, and session management |
-| **Firebase Firestore** | (if applicable) User data and cart persistence |
 
 ## Authors
 
-This project was developed as a web e-commerce application for the **Alfka** home appliances brand.
+This project was developed as part of the **Desenvolvimento Web** course in the **Licenciatura em Engenharia Informática** program.
 
-| Student | Role |
-|---------|------|
-| — | Front-end Development |
+| Student | Number |
+|---------|--------|
+| Tomás Alexandre | 30011117 |
+
+> **Professor:** Isabel Alvarez
 
 ---
 
