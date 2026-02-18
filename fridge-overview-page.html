@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <Title> AS Eletronics</Title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/general.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/product-overview-page.css">
+    <link rel="stylesheet" href="styles/footer.css">
+
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+
+  <body>
+
+    <!-- ++++++++++++++++++++++++ POP-UPS ++++++++++++++++++++++++ -->
+  
+    <div id="success-popup" class="popup-overlay">
+      <div class="popup-content">
+        <i class="fa-solid fa-check-circle success-icon"></i>
+        <p id="success-message"></p>
+        <button id="success-close-button">Fechar</button>
+      </div>
+    </div>
+
+
+    <div id="error-popup" class="popup-overlay">
+      <div class="popup-content">
+        <i class="fa-solid fa-times-circle error-icon"></i>
+        <p id="error-message"></p>
+        <button id="error-close-button">Fechar</button>
+      </div>
+    </div>
+
+    <div id="dashboard-popup" class="popup-overlay" style="display: none;">
+      <div class="popup-content">
+        <button id="dashboard-close-button" class="popup-close-button">X</button>
+        <p>Dashboard - Utilizadores Ativos</p>
+        <canvas id="user-activity-chart"></canvas>
+      </div>
+    </div>
+  
+    <!-- ++++++++++++++++++++++++ HEADER ++++++++++++++++++++++++ -->
+    
+    <div class="header-container">
+      <div class="header-1">
+
+        <div class="temp">
+          <div class="header-1-left-section">
+            <button class="contacts-button">
+              <p>Contactos</p>
+            </button>
+
+            <button class="shops-button">
+              <p>Lojas</p>
+            </button>
+          </div>
+
+          <div class="header-1-right-section">
+            <button class="shipping-button">
+              <p>Compras acima de 29.99€ = <span class="shipping-highlight">PORTES GRÁTIS</span></p>
+            </button>
+
+            <button class="returns-button">
+              <p>Trocas e Devoluções</p>
+            </button>
+
+            <button class="newsletter-button">
+              <p>Newsletter</p>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-2">
+        <!--LEFT SIDE-->
+
+        <div class="temp2">
+          <div class="header-2-left-section">
+            <button class="bars-button">
+              <i class="fa-solid fa-bars bars-icon-header"></i>
+            </button>
+
+            <button class="alfka-button" onclick="redirectToMainPage()">
+              <img class="alfka-icon-header" src="images/logos/alfka.png">
+            </button>
+          </div>
+
+          <!--MIDDLE SIDE-->
+          <div class="header-2-middle-section">
+
+            <div class="search-container">
+              <input class="search-bar" type="text" placeholder="O que procura?">
+              <button class="clear-button">
+                <i class="fa-solid fa-xmark xmark-icon-header"></i>
+              </button>
+
+              <button class="search-button">
+                <i class="fa-solid fa-magnifying-glass search-icon-header"></i>
+              </button>
+
+            </div>
+          </div>
+
+          <!--RIGHT SIDE-->
+          <div class="header-2-right-section">
+
+            <div class="cart-container">
+              <div class="cart-button">
+                <i class="fa-solid fa-cart-shopping cart-icon-header"></i>
+              </div>
+            </div>
+
+            <div class="favorite-container">
+              <div class="favorite-button">
+                <i class="fa-solid fa-heart favorite-icon-header"></i>
+                <div class="tooltip">Favoritos</div>
+              </div>
+            </div>
+
+            <div class="user-container">
+              <div class="user-button">
+                <i class="fa-solid fa-user user-icon-header"></i>
+
+                <div class="tooltip" id="user-tooltip">
+                  <button class="login-register-button" id="login-register-button" onclick="redirectToLoginPage()">
+                    <i class="fa-solid fa-user tooltip-icons"></i>
+                    <p class="tooltip-name">Login / Registar</p>
+                  </button>
+                
+                  <button class="account-button" id="account-button" style="display: none;">
+                    <i class="fa-solid fa-user tooltip-icons"></i>
+                    <p class="tooltip-name">A Minha Conta</p>
+                  </button>
+                
+                  <button class="dashboard-button" id="dashboard-button" style="display: none;">
+                    <i class="fa-solid fa-database tooltip-icons"></i>
+                    <p class="tooltip-name">Painel de Controlo</p>
+                  </button>
+
+                  <button class="notifications-button" id="notifications-button" style="display: none;">
+                    <i class="fa-solid fa-bell tooltip-icons"></i>
+                    <p class="tooltip-name">Notificações</p>
+                  </button>
+                
+                  <button class="info-button" id="info-button" style="display: none;">
+                    <i class="fa-solid fa-circle-info tooltip-icons"></i>
+                    <p class="tooltip-name">Info</p>
+                  </button>
+                
+                  <button class="settings-button" id="settings-button" style="display: none;">
+                    <i class="fa-solid fa-gear tooltip-icons"></i>
+                    <p class="tooltip-name">Definições</p>
+                  </button>
+                
+                  <button class="logout-button" id="logout-button" style="display: none;">
+                    <i class="fa-solid fa-arrow-right-from-bracket tooltip-icons"></i>
+                    <p class="tooltip-name">Sair da Conta</p>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ++++++++++++++++++++++++ PRODUCT OVERVIEW ++++++++++++++++++++++++ -->
+
+    <div class="overview-container">
+      <div class="overview-image-container">
+        <div class="overview-extra-image-container">
+          <div class="extra-image-container">
+            <img class="extra-image" src="images/eletronics/fridge1.png"  />
+          </div>
+          
+          <div class="extra-image-container">
+            <img class="extra-image" src="images/eletronics/fridge1.png"   />
+          </div>
+          
+          <div class="extra-image-container">
+            <img class="extra-image" src="images/eletronics/fridge1.png"  />
+          </div>
+        
+          <div class="extra-image-container">
+            <img class="extra-image" src="images/eletronics/fridge1.png"   />
+          </div>
+          
+        </div>
+
+        <div class="overview-main-image-container">
+          <img class="overview-eficiency" src="images/eficiency/A.png">
+          <p class="overview-warrant-tag">5 ANOS DE GARANTIA</p>
+          <p class="overview-discount-tag">15%</p>
+          <img class="main-image" src="images/eletronics/fridge1.png"  />
+        </div>
+
+      </div>
+    
+      <div class="overview-informations-container">
+
+        <div class="overview-brand">
+          <div class="product-brand">MIELE</div>
+        </div>
+
+        <div class="overview-name">
+          <div class="product-name">Frigorífico Combinado Miele KD 4052 E Active - Prata</div>
+        </div>
+
+        <div class="overview-ref">
+          <p class="product-ean">EAN: 4021587502547</p>
+        </div>
+
+        <div class="overview-price-rating">
+          <div class="overview-price">
+            <div class="product-price">949,99€</div>
+
+          </div>
+
+          <div class="overview-rating">
+            <i class="fa-solid fa-star star-full"></i>
+            <i class="fa-solid fa-star star-full"></i>
+            <i class="fa-solid fa-star star-full"></i>
+            <i class="fa-solid fa-star star-full"></i>
+            <i class="fa-solid fa-star star-full"></i>
+            <p class="rating-count">(13)</p>
+          </div>
+        </div>
+        
+        <div class="overview-stock">
+          <i class="fa-solid fa-circle-check with-stock"></i>
+          <div class="stock-text">
+            <p class="product-stock">Em stock</p>
+            <p class="product-delivery"> Entrega prevista a 22 de Janeiro</p>
+          </div>
+        </div>
+    
+        <div class="overview-buy-favorite">
+          <button class="overview-buy">
+            <i class="fa-solid fa-cart-plus overview-cart"></i>
+            <p class="buy-text">Adicionar ao carrinho</p>
+          </button>
+
+          <button class="overview-favorite">
+            <i class="fa-regular fa-heart overview-heart"></i>
+          </button>
+        </div>
+
+        <div class="overview-store-container">
+          <div class="overview-store-header" onclick="toggleElement('overview-store-content', 'overview-store-arrow')">
+            <div class="overview-store-name-container">
+              <i class="fa-solid fa-shop store-icon"></i>
+              <p class="overview-store-name">Disponibilidade em Loja</p>
+            </div>
+            
+            <i class="fa-solid fa-angle-down overview-store-arrow"></i> 
+          </div>
+        
+          <div class="overview-store-content show" id="overview-store-content">
+        
+            <div class="overview-store-availability">
+              <div class="store-availability">
+                <i class="fa-solid fa-circle availability-icon"></i>
+                <p class="availability-text">ALFKA Baixa-Chiado</p>
+              </div>
+              <p class="see-store">Ver loja</p>
+            </div>
+        
+            <div class="overview-store-availability">
+              <div class="store-availability">
+                <i class="fa-solid fa-circle availability-icon"></i>
+                <p class="availability-text">ALFKA Massamá</p>
+              </div>
+              <p class="see-store">Ver loja</p>
+            </div>
+        
+            <div class="overview-store-availability">
+              <div class="store-availability">
+                <i class="fa-solid fa-circle availability-icon"></i>
+                <p class="availability-text">ALFKA Alenquer</p>
+              </div>
+              <p class="see-store">Ver loja</p>
+            </div>
+        
+            <div class="overview-store-availability">
+              <div class="store-availability">
+                <i class="fa-solid fa-circle availability-icon"></i>
+                <p class="availability-text">ALFKA Amadora</p>
+              </div>
+              <p class="see-store">Ver loja</p>
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="overview-payment">
+          <div class="overview-payment-header">
+            <i class="fa-solid fa-credit-card payment-icon"></i>
+            <p class="payment-header-name">Pagamento em Prestações</p>
+          </div>
+
+          <div class="overview-payment-options">
+            <div class="overview-payment-installments">
+              <p class="installments-number-3x">3X</p>
+              <p class="payment-info">sem juros</p>
+            </div>
+
+            <div class="overview-payment-amount">
+              <p class="payment-amount-3x">149,99€/mês</p>
+              <i class="fa-solid fa-circle-info payment-info-icon"></i>
+            </div>
+          </div>
+
+          <div class="overview-payment-options">
+            <div class="overview-payment-installments">
+              <p class="installments-number-6x">6X</p>
+              <p class="payment-info">sem juros</p>
+            </div>
+
+            <div class="overview-payment-amount">
+              <p class="payment-amount-6x">74,99€/mês</p>
+              <i class="fa-solid fa-circle-info payment-info-icon"></i>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    
+    <!-- ++++++++++++++++++++++++ PRODUCT CARACTERISTICS ++++++++++++++++++++++++ -->
+
+    <div class="caracteristics-container">
+      
+      <div class="caracteristics-header" onclick="toggleElement('caracteristics-content', 'caracteristics-arrow')">
+        <p class="caracteristics-title">Características</p>
+        <i class="fa-solid fa-angle-down caracteristics-arrow"></i> 
+      </div>
+    
+      <div class="caracteristics-content show" id="caracteristics-content">
+        <div class="caracteristics-preview">
+    
+          <div class="caracteristics-row alternate">
+            <div class="caracteristics-label">Marca</div>
+            <div class="caracteristics-value">Miele</div>
+          </div>
+    
+          <div class="caracteristics-row">
+            <div class="caracteristics-label">Modelo</div>
+            <div class="caracteristics-value">KD 4052 E ACTIVE</div>
+          </div>
+    
+          <div class="caracteristics-row alternate">
+            <div class="caracteristics-label">Código Produto</div>
+            <div class="caracteristics-value">4021587502547</div>
+          </div>
+    
+          <div class="caracteristics-row">
+            <div class="caracteristics-label">EAN</div>
+            <div class="caracteristics-value">40215875025479</div>
+          </div>
+    
+          <div class="caracteristics-row alternate">
+            <div class="caracteristics-label">Largura</div>
+            <div class="caracteristics-value">595 mm</div>
+          </div>
+    
+          <div class="caracteristics-row">
+            <div class="caracteristics-label">Peso</div>
+            <div class="caracteristics-value">58,5 kg</div>
+          </div>
+    
+          <div class="caracteristics-row alternate">
+            <div class="caracteristics-label">Profundidade</div>
+            <div class="caracteristics-value">630 mm</div>
+          </div>
+    
+          <div class="caracteristics-row">
+            <div class="caracteristics-label">Altura</div>
+            <div class="caracteristics-value">1880 mm</div>
+          </div>
+    
+          <div class="caracteristics-row alternate">
+            <div class="caracteristics-label">Classe de eficiência energética</div>
+            <div class="caracteristics-value">A</div>
+          </div>
+    
+          <div class="caracteristics-row">
+            <div class="caracteristics-label">Consumo de energia anual</div>
+            <div class="caracteristics-value">235 kWh</div>
+          </div>
+    
+          <div class="caracteristics-row alternate">
+            <div class="caracteristics-label">Capacidade total líquida</div>
+            <div class="caracteristics-value">308 L</div>
+          </div>
+    
+          <div class="caracteristics-row">
+            <div class="caracteristics-label">Capacidade líquida do frigorífico</div>
+            <div class="caracteristics-value">222 L</div>
+          </div>
+    
+          <div class="caracteristics-row alternate">
+            <div class="caracteristics-label">Capacidade líquida do congelador</div>
+            <div class="caracteristics-value">86 L</div>
+          </div>
+    
+          <div class="caracteristics-row">
+            <div class="caracteristics-label">Capacidade de congelação</div>
+            <div class="caracteristics-value">3,9 kg/24h</div>
+          </div>
+    
+          <div class="caracteristics-row alternate">
+            <div class="caracteristics-label">Tempo de armazenamento durante falha de energia</div>
+            <div class="caracteristics-value">8 h</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- ++++++++++++++++++++++++ PRODUCT CRITICS ++++++++++++++++++++++++ -->
+
+    <div class="critics-container">
+
+      <div class="critics-header" onclick="toggleElement('critics-content', 'critics-arrow')">
+        <p class="critics-title">Opiniões do Produto</p>
+        <i class="fa-solid fa-angle-down critics-arrow"></i> 
+      </div>
+    
+      <div class="critics-content show" id="critics-content">
+        <div class="critics-header-2">
+
+          <div class="critics-average-container">
+            <p class="average-number">5/5</p>
+
+            <div class="average-rating">
+              <i class="fa-solid fa-star star-full"></i>
+              <i class="fa-solid fa-star star-full"></i>
+              <i class="fa-solid fa-star star-full"></i>
+              <i class="fa-solid fa-star star-full"></i>
+              <i class="fa-solid fa-star star-half"></i>
+            </div>
+
+            <p class="average-critics">3 Avaliações</p>
+          </div>
+
+          <div class="critics-evaluation-container">
+            <div class="critics-evaluation">
+              <div class="critics-evaluation-rating">
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-half"></i>
+              </div>
+              <div class="critics-bar green"></div>
+              <p class="critics-evaluation-number"> 3 </p>
+            </div>
+
+            <div class="critics-evaluation">
+              <div class="critics-evaluation-rating">
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-half"></i>
+              </div>
+              <div class="critics-bar"></div>
+              <p class="critics-evaluation-number"> 0 </p>
+            </div>
+
+            <div class="critics-evaluation">
+              <div class="critics-evaluation-rating">
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-half"></i>
+              </div>
+              <div class="critics-bar"></div>
+              <p class="critics-evaluation-number"> 0 </p>
+            </div>
+
+            <div class="critics-evaluation">
+              <div class="critics-evaluation-rating">
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-half"></i>
+              </div>
+              <div class="critics-bar"></div>
+              <p class="critics-evaluation-number"> 0 </p>
+            </div>
+
+            <div class="critics-evaluation">
+              <div class="critics-evaluation-rating">
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-half"></i>
+              </div>
+              <div class="critics-bar"></div>
+              <p class="critics-evaluation-number"> 0 </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="critics-line"></div>
+
+        <div class="critics-preview-container">
+          <div class="user-critics-container">
+            <div class="critics-name-rating">
+              <p class="critics-name">Bruno Soares</p>
+              <div class="critics-rating">
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-half"></i>
+                <p class="rating-count">(5)</p>
+              </div>
+            </div>
+            <p class="critics-date">14/07/2025</p>
+            <p class="critics-text">Gostei bastante do produto, entrega muito rápida!</p>
+          </div>
+          
+          <div class="critics-line"></div>
+
+          <div class="user-critics-container">
+            <div class="critics-name-rating">
+              <p class="critics-name">Alice Ferreira</p>
+              <div class="critics-rating">
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <p class="rating-count">(5)</p>
+              </div>
+            </div>
+            <p class="critics-date">19/03/2025</p>
+            <p class="critics-text">Adorei o produto!</p>
+          </div>
+
+          <div class="critics-line"></div>
+
+          <div class="user-critics-container">
+            <div class="critics-name-rating">
+              <p class="critics-name">Amalia Rodrigues</p>
+              <div class="critics-rating">
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <p class="rating-count">(5)</p>
+              </div>
+            </div>
+            <p class="critics-date">16/07/2025</p>
+            <p class="critics-text">Achei o produto funcional e bonito, porém, a entrega atrasou um pouco.</p>
+          </div>
+
+          <div class="critics-line"></div>
+
+          <div class="user-critics-container">
+            <div class="critics-name-rating">
+              <p class="critics-name">João Paulo</p>
+              <div class="critics-rating">
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <i class="fa-solid fa-star star-full"></i>
+                <p class="rating-count">(5)</p>
+              </div>
+            </div>
+            <p class="critics-date">30/04/2025</p>
+            <p class="critics-text">Perfeito</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- ++++++++++++++++++++++++ PRODUCT CRITICS ++++++++++++++++++++++++ -->
+
+    <div class="best-seller-title">
+      <h> PRODUTOS RELACIONADOS</h>
+    </div>
+    
+    <div class="best-seller-products-container">
+      <div class="best-seller-slider">
+        
+        <div class="best-seller-preview" onclick="redirectToFridgeOverview()">
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/fridge1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Frigorífico Combinado Miele KD 4052 E Active - Prata</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-pvp-price-container">
+              <p class="best-seller-price-tag">PVPr 1149,99€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">949,99€</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="best-seller-preview" onclick="redirectToFridgeOverview()">
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/fridge1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Frigorífico Combinado Miele KD 4052 E Active - Prata</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-pvp-price-container">
+              <p class="best-seller-price-tag">PVPr 1149,99€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">949,99€</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="best-seller-preview" onclick="redirectToFridgeOverview()">
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/fridge1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Frigorífico Combinado Miele KD 4052 E Active - Prata</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-pvp-price-container">
+              <p class="best-seller-price-tag">PVPr 1149,99€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">949,99€</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="best-seller-preview" onclick="redirectToFridgeOverview()">
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/fridge1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Frigorífico Combinado Miele KD 4052 E Active - Prata</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-pvp-price-container">
+              <p class="best-seller-price-tag">PVPr 1149,99€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">949,99€</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="best-seller-preview" onclick="redirectToFridgeOverview()">
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/fridge1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Frigorífico Combinado Miele KD 4052 E Active - Prata</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-pvp-price-container">
+              <p class="best-seller-price-tag">PVPr 1149,99€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">949,99€</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="best-seller-preview" onclick="redirectToFridgeOverview()">
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/fridge1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Frigorífico Combinado Miele KD 4052 E Active - Prata</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-pvp-price-container">
+              <p class="best-seller-price-tag">PVPr 1149,99€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">949,99€</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="best-seller-preview" onclick="redirectToFridgeOverview()">
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/fridge1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Frigorífico Combinado Miele KD 4052 E Active - Prata</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-pvp-price-container">
+              <p class="best-seller-price-tag">PVPr 1149,99€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">949,99€</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="best-seller-preview" onclick="redirectToFridgeOverview()">
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/fridge1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Frigorífico Combinado Miele KD 4052 E Active - Prata</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-pvp-price-container">
+              <p class="best-seller-price-tag">PVPr 1149,99€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">949,99€</p>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="best-seller-preview" onclick="redirectToFridgeOverview()">
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/fridge1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Frigorífico Combinado Miele KD 4052 E Active - Prata</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-pvp-price-container">
+              <p class="best-seller-price-tag">PVPr 1149,99€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">949,99€</p>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- ++++++++++++++++++++++++ FOOTER ++++++++++++++++++++++++ -->
+
+    <div class="footer-container">
+
+      <div class="footer-display-1">
+        <div class="footer-newsletter">
+          <p class="footer-newsletter-title">Adere à nossa Newsletter!</p>
+          <div class="newsletter-search-container">
+            <input class="newsletter-search-bar" type="text" placeholder="Preenche com o teu e-mail">
+
+            <button class="newsletter-button">
+              <i class="fa-regular fa-envelope newsletter-icon"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="footer-socials">
+          <p class="footer-socials-title">Segue-nos nas Redes Sociais!</p>
+          <div class="socials-container">
+            <i class="fa-brands fa-facebook socials-icon"></i>
+            <i class="fa-brands fa-instagram socials-icon"></i>
+            <i class="fa-brands fa-x-twitter socials-icon"></i>
+            <i class="fa-brands fa-tiktok socials-icon"></i>
+            <i class="fa-brands fa-youtube socials-icon"></i>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="line"></div>
+
+      <div class="footer-display-2">
+        <div class="footer-info">
+
+          <div class="footer-info-alfka">
+            <p class="footer-info-title">Alfka</p>
+            <p class="footer-info-text">A nossa história</p>
+            <p class="footer-info-text">Lojas</p>
+            <p class="footer-info-text">Sustentabilidade</p>
+            <p class="footer-info-text">Política de Privacidade</p>
+          </div>
+
+          <div class="footer-info-alfka">
+            <p class="footer-info-title">Serviços</p>
+            <p class="footer-info-text">Instalação de Eletrodomésticos</p>
+            <p class="footer-info-text">Assistência Pós-Venda</p>
+            <p class="footer-info-text">Garantia</p>
+            <p class="footer-info-text">Reparações Certificadas</p>
+          </div>
+
+          <div class="footer-info-alfka">
+            <p class="footer-info-title">Apoio ao Cliente</p>
+            <p class="footer-info-text">Acompanhar Pedido</p>
+            <p class="footer-info-text">Perguntas Frequentes</p>
+            <p class="footer-info-text">Livro de Reclamações</p>
+            <p class="footer-info-text">Contacte-nos</p>
+          </div>
+
+          <div class="footer-info-alfka">
+            <p class="footer-info-title">Compra Online</p>
+            <p class="footer-info-text">Métodos de Pagamento</p>
+            <p class="footer-info-text">Entregas</p>
+            <p class="footer-info-text">Trocas e Devoluções</p>
+            <p class="footer-info-text">Ajuda</p>
+          </div>
+        </div>
+
+
+        <div class="footer-payments">
+          <img class="payment-images-mbway" src="images/logos/mbway-logo.png">
+          <img class="payment-images-multibanco" src="images/logos/multibanco-logo.png">
+          <img class="payment-images-visa" src="images/logos/visa-logo.png">
+          <img class="payment-images-mastercard" src="images/logos/mastercard-logo.png">
+          <img class="payment-images-paypal" src="images/logos/paypal-logo.png">
+        </div>
+      </div>
+
+      <div class="footer-display-3">
+        <div class="footer-legal">
+          <p class="footer-legal-text">© Alfka, Todos os direitos reservados. Alfka – Equipamentos e Serviços, Unipessoal, Lda., com sede em Massamá, Rua das Flores, nº 25, 2745-876 Massamá, NIF nº 512 345 678, com o capital social de 50.000,00 €. Todos os preços incluem IVA à taxa legal em vigor e são válidos apenas na loja online para o dia em que são publicados, salvo erros de publicação. Não dispensa a leitura dos termos e condições.</p>
+        </div>
+      </div>
+    </div>
+  
+    <!-- ++++++++++++++++++++++++ SCRIPTS ++++++++++++++++++++++++++++++ -->
+  
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    
+    <script src="scripts/product-overview-scripts.js"></script>
+    <script src="scripts/general.js" type="module"></script>
+    <script src="scripts/firebase.js" type="module"></script>
+    
+  </body>
+</html>
+
+

@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <Title> AS Eletronics</Title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/general.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/products-page.css">
+    <link rel="stylesheet" href="styles/footer.css">
+
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+
+  <body>
+
+    <!-- ++++++++++++++++++++++++ POP-UPS ++++++++++++++++++++++++ -->
+
+    <div id="success-popup" class="popup-overlay">
+      <div class="popup-content">
+        <i class="fa-solid fa-check-circle success-icon"></i>
+        <p id="success-message"></p>
+        <button id="success-close-button">Fechar</button>
+      </div>
+    </div>
+
+    <div id="error-popup" class="popup-overlay">
+      <div class="popup-content">
+        <i class="fa-solid fa-times-circle error-icon"></i>
+        <p id="error-message"></p>
+        <button id="error-close-button">Fechar</button>
+      </div>
+    </div>
+
+    <div id="dashboard-popup" class="popup-overlay" style="display: none;">
+      <div class="popup-content">
+        <button id="dashboard-close-button" class="popup-close-button">X</button>
+        <p>Dashboard - Utilizadores Ativos</p>
+        <canvas id="user-activity-chart"></canvas>
+      </div>
+    </div>
+  
+    <!-- ++++++++++++++++++++++++ HEADER ++++++++++++++++++++++++ -->
+    
+    <div class="header-container">
+      <div class="header-1">
+
+        <div class="temp">
+          <div class="header-1-left-section">
+            <button class="contacts-button">
+              <p>Contactos</p>
+            </button>
+
+            <button class="shops-button">
+              <p>Lojas</p>
+            </button>
+          </div>
+
+          <div class="header-1-right-section">
+            <button class="shipping-button">
+              <p>Compras acima de 29.99€ = <span class="shipping-highlight">PORTES GRÁTIS</span></p>
+            </button>
+
+            <button class="returns-button">
+              <p>Trocas e Devoluções</p>
+            </button>
+
+            <button class="newsletter-button">
+              <p>Newsletter</p>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-2">
+        <!--LEFT SIDE-->
+
+        <div class="temp2">
+          <div class="header-2-left-section">
+            <button class="bars-button">
+              <i class="fa-solid fa-bars bars-icon-header"></i>
+            </button>
+
+            <button class="alfka-button" onclick="redirectToMainPage()">
+              <img class="alfka-icon-header" src="images/logos/alfka.png">
+            </button>
+          </div>
+
+          <!--MIDDLE SIDE-->
+          <div class="header-2-middle-section">
+
+            <div class="search-container">
+              <input class="search-bar" type="text" placeholder="O que procura?">
+              <button class="clear-button">
+                <i class="fa-solid fa-xmark xmark-icon-header"></i>
+              </button>
+
+              <button class="search-button">
+                <i class="fa-solid fa-magnifying-glass search-icon-header"></i>
+              </button>
+
+            </div>
+          </div>
+
+          <!--RIGHT SIDE-->
+          <div class="header-2-right-section">
+
+            <div class="cart-container">
+              <div class="cart-button">
+                <i class="fa-solid fa-cart-shopping cart-icon-header"></i>
+              </div>
+            </div>
+
+            <div class="favorite-container">
+              <div class="favorite-button">
+                <i class="fa-solid fa-heart favorite-icon-header"></i>
+                <div class="tooltip">Favoritos</div>
+              </div>
+            </div>
+
+            <div class="user-container">
+              <div class="user-button">
+                <i class="fa-solid fa-user user-icon-header"></i>
+
+                <div class="tooltip" id="user-tooltip">
+                  <button class="login-register-button" id="login-register-button" onclick="redirectToLoginPage()">
+                    <i class="fa-solid fa-user tooltip-icons"></i>
+                    <p class="tooltip-name">Login / Registar</p>
+                  </button>
+                
+                  <button class="account-button" id="account-button" style="display: none;">
+                    <i class="fa-solid fa-user tooltip-icons"></i>
+                    <p class="tooltip-name">A Minha Conta</p>
+                  </button>
+                
+                  <button class="dashboard-button" id="dashboard-button" style="display: none;">
+                    <i class="fa-solid fa-database tooltip-icons"></i>
+                    <p class="tooltip-name">Painel de Controlo</p>
+                  </button>
+
+                  <button class="notifications-button" id="notifications-button" style="display: none;">
+                    <i class="fa-solid fa-bell tooltip-icons"></i>
+                    <p class="tooltip-name">Notificações</p>
+                  </button>
+                
+                  <button class="info-button" id="info-button" style="display: none;">
+                    <i class="fa-solid fa-circle-info tooltip-icons"></i>
+                    <p class="tooltip-name">Info</p>
+                  </button>
+                
+                  <button class="settings-button" id="settings-button" style="display: none;">
+                    <i class="fa-solid fa-gear tooltip-icons"></i>
+                    <p class="tooltip-name">Definições</p>
+                  </button>
+                
+                  <button class="logout-button" id="logout-button" style="display: none;">
+                    <i class="fa-solid fa-arrow-right-from-bracket tooltip-icons"></i>
+                    <p class="tooltip-name">Sair da Conta</p>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- ++++++++++++++++++++++++ PRODUCTS PAGE  ++++++++++++++++++++++++++++++ -->
+  
+    
+
+    <div class="products-page-container">
+      <div class="products-header">
+        <div class="search-results">
+          <p class="search-"><span class="search-number">82</span> resultados para "Fornos"</p>
+        </div>
+  
+        <div class="order-container">
+          <p class="order-label">Ordenar por</p>
+          <div class="order-dropdown">
+            <div class="order-selected">Relevância</div>
+            <ul class="order-options">
+              <li class="order-option">Relevância</li>
+              <li class="order-option">Preço: Ascendente</li>
+              <li class="order-option">Preço: Descendente</li>
+              <li class="order-option">Avaliações</li>
+              <li class="order-option">Mais Recentes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  
+      <div class="products-container"> 
+        <div class="filter-container">
+    
+          <div class="type-filter-container">
+    
+            <div class="type-filter-header" onclick="toggleFilters('type-filter-container')">
+              <p class="type-filter-name"> Tipo de Produto </p>
+              <i class="fa-solid fa-angle-down filter-arrow"></i> 
+            </div>
+    
+            <div class="filter-content show" id="type-filter-container">
+    
+              <label class="checkbox-container">
+                <input type="checkbox">
+                <span class="checkbox-name">Fornos de Encastre</span>
+              </label>
+      
+              <label class="checkbox-container">
+                <input type="checkbox">
+                <span class="checkbox-name">Fogão Portátil</span>
+              </label>
+      
+              <label class="checkbox-container">
+                <input type="checkbox">
+                <span class="checkbox-name">Placas de Indução</span>
+              </label>
+      
+            </div>
+          </div>
+    
+          <div class="filter-line"></div>
+    
+          <div class="brand-filter-container">
+            <div class="brand-filter-header" onclick="toggleFilters('brand-filter-container')">
+              <p class="brand-filter-name">Marca</p>
+              <i class="fa-solid fa-angle-up filter-arrow"></i> 
+            </div>
+    
+            <div class="filter-content show" id="brand-filter-container">
+              <label class="checkbox-container">
+                  <input type="checkbox">
+                  <span class="checkbox-name">Candy</span>
+                </label>
+      
+                <label class="checkbox-container">
+                  <input type="checkbox">
+                  <span class="checkbox-name">Bosch</span>
+                </label>
+      
+                <label class="checkbox-container">
+                  <input type="checkbox">
+                  <span class="checkbox-name">LG</span>
+                </label>
+      
+                <label class="checkbox-container">
+                  <input type="checkbox">
+                  <span class="checkbox-name">Siemens</span>
+                </label>
+      
+                <label class="checkbox-container">
+                  <input type="checkbox">
+                  <span class="checkbox-name">Teka</span>
+                </label>
+      
+                <label class="checkbox-container">
+                  <input type="checkbox">
+                  <span class="checkbox-name">Indesit</span>
+                </label>
+      
+                <label class="checkbox-container">
+                  <input type="checkbox">
+                  <span class="checkbox-name">Samsung</span>
+                </label>
+            </div>
+          </div>
+    
+          <div class="filter-line"></div>
+    
+          <div class="weight-filter-container">
+            <div class="weight-filter-header" onclick="toggleFilters('weight-filter-container')">
+              <p class="weight-filter-name">Peso</p>
+              <i class="fa-solid fa-angle-up filter-arrow"></i> <!-- Seta -->
+            </div>
+    
+            <div class="filter-content show" id="weight-filter-container">
+    
+              <label class="checkbox-container">
+                <input type="checkbox">
+                <span class="checkbox-name">Até 50kg</span>
+              </label>
+    
+              <label class="checkbox-container">
+                <input type="checkbox">
+                <span class="checkbox-name">De 50kg a 100kg</span>
+              </label>
+    
+              <label class="checkbox-container">
+                <input type="checkbox">
+                <span class="checkbox-name">De 100kg a 150kg</span>
+              </label>
+    
+              <label class="checkbox-container">
+                <input type="checkbox">
+                <span class="checkbox-name">Mais de 150kg</span>
+              </label>
+            </div>
+          </div>
+    
+          <div class="filter-line"></div>
+    
+          <div class="price-filter-container">
+            <div class="price-filter-header" onclick="toggleFilters('price-filter-container')">
+              <p class="price-filter-name">Preço</p>
+              <i class="fa-solid fa-angle-up filter-arrow"></i>
+            </div>
+          
+            <div class="filter-content show show" id="price-filter-container">
+              <div class="slider-container">
+                <div class="range-slider">
+                  <input type="range" id="price-min" class="price-slider"
+                    min="00" max="10500" value="00" oninput="updatePriceLabels()"/>
+                  
+                    <input type="range" id="price-max" class="price-slider"
+                    min="00" max="10500" value="10500" oninput="updatePriceLabels()"/>
+                </div>
+    
+                <div class="price-labels">
+                  <p id="price-min-label">0,00 €</p>
+                  <p id="price-max-label">10500,00 €</p>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <div class="filter-line"></div>
+    
+          <div class="color-filter-container">
+            <div class="color-filter-header" onclick="toggleFilters('color-filter-container')">
+              <p class="color-filter-name">Cor</p>
+              <i class="fa-solid fa-angle-down filter-arrow"></i>
+            </div>
+    
+            <div class="filter-content" id="color-filter-container">
+    
+              <label class="checkbox-container">
+                <input type="checkbox">
+                <span class="checkbox-name">Branco</span>
+              </label>
+    
+              <label class="checkbox-container">
+                <input type="checkbox">
+                <span class="checkbox-name">Inox</span>
+              </label>
+    
+              <label class="checkbox-container">
+                <input type="checkbox">
+                <span class="checkbox-name">Preto</span>
+              </label>
+    
+              <label class="checkbox-container">
+                <input type="checkbox">
+                <span class="checkbox-name">Cinzento</span>
+              </label>
+            </div>
+          </div>
+    
+          <div class="filter-line"></div>
+    
+          <div class="eficiency-filter-container">
+            <div class="eficiency-filter-header" onclick="toggleFilters('eficiency-filter-container')">
+              <p class="eficiency-filter-name">Classe Energética</p>
+              <i class="fa-solid fa-angle-down filter-arrow"></i> <!-- Seta -->
+            </div>
+    
+            <div class="filter-content" id="eficiency-filter-container">
+    
+              <label class="checkbox-container">
+                <input type="checkbox">
+                <span class="checkbox-name">Classe A</span>
+              </label>
+    
+              <label class="checkbox-container">
+                <input type="checkbox">
+                <span class="checkbox-name">Classe B</span>
+              </label>
+    
+              <label class="checkbox-container">
+                <input type="checkbox">
+                <span class="checkbox-name">Classe C</span>
+              </label>
+    
+              <label class="checkbox-container">
+                <input type="checkbox">
+                <span class="checkbox-name">Classe D</span>
+              </label>
+    
+              <label class="checkbox-container">
+                <input type="checkbox">
+                <span class="checkbox-name">Classe E</span>
+              </label>
+    
+              <label class="checkbox-container">
+                <input type="checkbox">
+                <span class="checkbox-name">Classe F</span>
+              </label>
+    
+              <label class="checkbox-container">
+                <input type="checkbox">
+                <span class="checkbox-name">Classe G</span>
+              </label>
+            </div>
+          </div>
+          
+          <div class="filter-line"></div>
+    
+          <div class="rating-filter-container">
+            <div class="rating-filter-header" onclick="toggleFilters('rating-filter-container')">
+              <p class="rating-filter-name">Avaliações</p>
+              <i class="fa-solid fa-angle-down filter-arrow"></i> <!-- Seta -->
+            </div>
+    
+            <div class="filter-content" id="rating-filter-container">
+    
+              <label class="checkbox-container">
+                <input type="checkbox">
+                <span class="checkbox-name">
+                  <div class="star-pack">
+                    <i class="fa-solid fa-star star-full"></i>
+                    <i class="fa-solid fa-star star-full"></i>
+                    <i class="fa-solid fa-star star-full"></i>
+                    <i class="fa-solid fa-star star-full"></i>
+                    <i class="fa-solid fa-star star-full"></i>
+                  </div>
+                  <div class="stars-filter-name">
+                    5
+                  </div>
+                </span>
+              </label>
+    
+              <label class="checkbox-container">
+                <input type="checkbox">
+                <span class="checkbox-name">
+                  <div class="star-pack">
+                    <i class="fa-solid fa-star star-full"></i>
+                    <i class="fa-solid fa-star star-full"></i>
+                    <i class="fa-solid fa-star star-full"></i>
+                    <i class="fa-solid fa-star star-full"></i>
+                    <i class="fa-regular fa-star star-empty"></i>
+                  </div>
+    
+                  <div class="stars-filter-name">
+                    4 ou 4.5
+                  </div>
+                </span>
+              </label>
+    
+              <label class="checkbox-container">
+                <input type="checkbox">
+                <span class="checkbox-name">
+                  <div class="star-pack">
+                    <i class="fa-solid fa-star star-full"></i>
+                    <i class="fa-solid fa-star star-full"></i>
+                    <i class="fa-solid fa-star star-full"></i>
+                    <i class="fa-regular fa-star star-empty"></i>
+                    <i class="fa-regular fa-star star-empty"></i>
+                  </div>
+    
+                  <div class="stars-filter-name">
+                    3 ou 3.5
+                  </div>
+                </span>
+              </label>
+    
+              <label class="checkbox-container">
+                <input type="checkbox">
+                <span class="checkbox-name">
+                  <div class="star-pack">
+                    <i class="fa-solid fa-star star-full"></i>
+                    <i class="fa-solid fa-star star-full"></i>
+                    <i class="fa-regular fa-star star-empty"></i>
+                    <i class="fa-regular fa-star star-empty"></i>
+                    <i class="fa-regular fa-star star-empty"></i>
+                  </div>
+    
+                  <div class="stars-filter-name">
+                    2 ou 2.5
+                  </div>
+                </span>
+              </label>
+    
+              <label class="checkbox-container">
+                <input type="checkbox">
+                <span class="checkbox-name">
+                  <div class="star-pack">
+                    <i class="fa-solid fa-star star-full"></i>
+                    <i class="fa-regular fa-star star-empty"></i>
+                    <i class="fa-regular fa-star star-empty"></i>
+                    <i class="fa-regular fa-star star-empty"></i>
+                    <i class="fa-regular fa-star star-empty"></i>
+                  </div>
+    
+                  <div class="stars-filter-name">
+                    1 ou 1.5
+                  </div>
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="products-selection-container">
+          <div class="products-grid">
+      
+            <!--  PRODUCTS PREVIEW  -->
+            <div class="product-preview" onclick="redirectToOvenOverview()">
+              <!-- TAGS -->
+              <p class="discount-tag">15%</p>
+              <img class="eficiency-tag" src="images/eficiency/A.png">
+              <!--  IMAGE CONTAINER  -->
+              <div class="product-image-container">
+                <img class="product-image" src="images/eletronics/oven1.png">
+              </div>
+              <!--  RATING CONTAINER  -->
+              <div class="rating-container">
+                <div class="star-pack">
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-regular fa-star-half-stroke star-half"></i>
+                </div>
+                <p class="rating-count">(155)</p>
+              </div>
+              <!--  NAME CONTAINER  -->
+              <div class="product-name-container">
+                <p>Forno AEG BPE535160 B - Preto</p>
+              </div>
+              <!--  PRICE CONTAINER  -->
+              <div class="price-favorite-container">
+                <div class="all-price-container">
+                  <div class="product-discount-price-container">
+                    <p class="discount-price-tag">679,00€</p>
+                  </div>
+                  <div class="product-price-container">
+                    <p class="price-tag">577,15€</p>
+                  </div>
+                </div>
+                <!--  FAVORITE / CART  -->
+                <div class="product-favorite-cart-container">
+                  <button class="product-cart-button">
+                    <i class="fa-solid fa-plus product-cart-icon"></i>
+                  </button>
+                  <button class="product-favorite-button">
+                    <i class="fa-regular fa-heart product-favorite-icon"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+      
+            <!--  PRODUCTS PREVIEW  -->
+            <div class="product-preview" onclick="redirectToOvenOverview()">
+              <!-- TAGS -->
+              <p class="discount-tag">15%</p>
+              <img class="eficiency-tag" src="images/eficiency/A.png">
+              <!--  IMAGE CONTAINER  -->
+              <div class="product-image-container">
+                <img class="product-image" src="images/eletronics/oven1.png">
+              </div>
+              <!--  RATING CONTAINER  -->
+              <div class="rating-container">
+                <div class="star-pack">
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-regular fa-star-half-stroke star-half"></i>
+                </div>
+                <p class="rating-count">(155)</p>
+              </div>
+              <!--  NAME CONTAINER  -->
+              <div class="product-name-container">
+                <p>Forno AEG BPE535160 B - Preto</p>
+              </div>
+              <!--  PRICE CONTAINER  -->
+              <div class="price-favorite-container">
+                <div class="all-price-container">
+                  <div class="product-discount-price-container">
+                    <p class="discount-price-tag">679,00€</p>
+                  </div>
+                  <div class="product-price-container">
+                    <p class="price-tag">577,15€</p>
+                  </div>
+                </div>
+                <!--  FAVORITE / CART  -->
+                <div class="product-favorite-cart-container">
+                  <button class="product-cart-button">
+                    <i class="fa-solid fa-plus product-cart-icon"></i>
+                  </button>
+                  <button class="product-favorite-button">
+                    <i class="fa-regular fa-heart product-favorite-icon"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+      
+            <!--  PRODUCTS PREVIEW  -->
+            <div class="product-preview" onclick="redirectToOvenOverview()">
+              <!-- TAGS -->
+              <p class="discount-tag">15%</p>
+              <img class="eficiency-tag" src="images/eficiency/A.png">
+              <!--  IMAGE CONTAINER  -->
+              <div class="product-image-container">
+                <img class="product-image" src="images/eletronics/oven1.png">
+              </div>
+              <!--  RATING CONTAINER  -->
+              <div class="rating-container">
+                <div class="star-pack">
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-regular fa-star-half-stroke star-half"></i>
+                </div>
+                <p class="rating-count">(155)</p>
+              </div>
+              <!--  NAME CONTAINER  -->
+              <div class="product-name-container">
+                <p>Forno AEG BPE535160 B - Preto</p>
+              </div>
+              <!--  PRICE CONTAINER  -->
+              <div class="price-favorite-container">
+                <div class="all-price-container">
+                  <div class="product-discount-price-container">
+                    <p class="discount-price-tag">679,00€</p>
+                  </div>
+                  <div class="product-price-container">
+                    <p class="price-tag">577,15€</p>
+                  </div>
+                </div>
+                <!--  FAVORITE / CART  -->
+                <div class="product-favorite-cart-container">
+                  <button class="product-cart-button">
+                    <i class="fa-solid fa-plus product-cart-icon"></i>
+                  </button>
+                  <button class="product-favorite-button">
+                    <i class="fa-regular fa-heart product-favorite-icon"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+      
+            <!--  PRODUCTS PREVIEW  -->
+            <div class="product-preview" onclick="redirectToOvenOverview()">
+              <!-- TAGS -->
+              <p class="discount-tag">15%</p>
+              <img class="eficiency-tag" src="images/eficiency/A.png">
+              <!--  IMAGE CONTAINER  -->
+              <div class="product-image-container">
+                <img class="product-image" src="images/eletronics/oven1.png">
+              </div>
+              <!--  RATING CONTAINER  -->
+              <div class="rating-container">
+                <div class="star-pack">
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-regular fa-star-half-stroke star-half"></i>
+                </div>
+                <p class="rating-count">(155)</p>
+              </div>
+              <!--  NAME CONTAINER  -->
+              <div class="product-name-container">
+                <p>Forno AEG BPE535160 B - Preto</p>
+              </div>
+              <!--  PRICE CONTAINER  -->
+              <div class="price-favorite-container">
+                <div class="all-price-container">
+                  <div class="product-discount-price-container">
+                    <p class="discount-price-tag">679,00€</p>
+                  </div>
+                  <div class="product-price-container">
+                    <p class="price-tag">577,15€</p>
+                  </div>
+                </div>
+                <!--  FAVORITE / CART  -->
+                <div class="product-favorite-cart-container">
+                  <button class="product-cart-button">
+                    <i class="fa-solid fa-plus product-cart-icon"></i>
+                  </button>
+                  <button class="product-favorite-button">
+                    <i class="fa-regular fa-heart product-favorite-icon"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+      
+            <!--  PRODUCTS PREVIEW  -->
+            <div class="product-preview" onclick="redirectToOvenOverview()">
+              <!-- TAGS -->
+              <p class="discount-tag">15%</p>
+              <img class="eficiency-tag" src="images/eficiency/A.png">
+              <!--  IMAGE CONTAINER  -->
+              <div class="product-image-container">
+                <img class="product-image" src="images/eletronics/oven1.png">
+              </div>
+              <!--  RATING CONTAINER  -->
+              <div class="rating-container">
+                <div class="star-pack">
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-regular fa-star-half-stroke star-half"></i>
+                </div>
+                <p class="rating-count">(155)</p>
+              </div>
+              <!--  NAME CONTAINER  -->
+              <div class="product-name-container">
+                <p>Forno AEG BPE535160 B - Preto</p>
+              </div>
+              <!--  PRICE CONTAINER  -->
+              <div class="price-favorite-container">
+                <div class="all-price-container">
+                  <div class="product-discount-price-container">
+                    <p class="discount-price-tag">679,00€</p>
+                  </div>
+                  <div class="product-price-container">
+                    <p class="price-tag">577,15€</p>
+                  </div>
+                </div>
+                <!--  FAVORITE / CART  -->
+                <div class="product-favorite-cart-container">
+                  <button class="product-cart-button">
+                    <i class="fa-solid fa-plus product-cart-icon"></i>
+                  </button>
+                  <button class="product-favorite-button">
+                    <i class="fa-regular fa-heart product-favorite-icon"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+      
+            <!--  PRODUCTS PREVIEW  -->
+            <div class="product-preview" onclick="redirectToOvenOverview()">
+              <!-- TAGS -->
+              <p class="discount-tag">15%</p>
+              <img class="eficiency-tag" src="images/eficiency/A.png">
+              <!--  IMAGE CONTAINER  -->
+              <div class="product-image-container">
+                <img class="product-image" src="images/eletronics/oven1.png">
+              </div>
+              <!--  RATING CONTAINER  -->
+              <div class="rating-container">
+                <div class="star-pack">
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-regular fa-star-half-stroke star-half"></i>
+                </div>
+                <p class="rating-count">(155)</p>
+              </div>
+              <!--  NAME CONTAINER  -->
+              <div class="product-name-container">
+                <p>Forno AEG BPE535160 B - Preto</p>
+              </div>
+              <!--  PRICE CONTAINER  -->
+              <div class="price-favorite-container">
+                <div class="all-price-container">
+                  <div class="product-discount-price-container">
+                    <p class="discount-price-tag">679,00€</p>
+                  </div>
+                  <div class="product-price-container">
+                    <p class="price-tag">577,15€</p>
+                  </div>
+                </div>
+                <!--  FAVORITE / CART  -->
+                <div class="product-favorite-cart-container">
+                  <button class="product-cart-button">
+                    <i class="fa-solid fa-plus product-cart-icon"></i>
+                  </button>
+                  <button class="product-favorite-button">
+                    <i class="fa-regular fa-heart product-favorite-icon"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+      
+            <!--  PRODUCTS PREVIEW  -->
+            <div class="product-preview" onclick="redirectToOvenOverview()">
+              <!-- TAGS -->
+              <p class="discount-tag">15%</p>
+              <img class="eficiency-tag" src="images/eficiency/A.png">
+              <!--  IMAGE CONTAINER  -->
+              <div class="product-image-container">
+                <img class="product-image" src="images/eletronics/oven1.png">
+              </div>
+              <!--  RATING CONTAINER  -->
+              <div class="rating-container">
+                <div class="star-pack">
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-regular fa-star-half-stroke star-half"></i>
+                </div>
+                <p class="rating-count">(155)</p>
+              </div>
+              <!--  NAME CONTAINER  -->
+              <div class="product-name-container">
+                <p>Forno AEG BPE535160 B - Preto</p>
+              </div>
+              <!--  PRICE CONTAINER  -->
+              <div class="price-favorite-container">
+                <div class="all-price-container">
+                  <div class="product-discount-price-container">
+                    <p class="discount-price-tag">679,00€</p>
+                  </div>
+                  <div class="product-price-container">
+                    <p class="price-tag">577,15€</p>
+                  </div>
+                </div>
+                <!--  FAVORITE / CART  -->
+                <div class="product-favorite-cart-container">
+                  <button class="product-cart-button">
+                    <i class="fa-solid fa-plus product-cart-icon"></i>
+                  </button>
+                  <button class="product-favorite-button">
+                    <i class="fa-regular fa-heart product-favorite-icon"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+      
+            <!--  PRODUCTS PREVIEW  -->
+            <div class="product-preview" onclick="redirectToOvenOverview()">
+              <!-- TAGS -->
+              <p class="discount-tag">15%</p>
+              <img class="eficiency-tag" src="images/eficiency/A.png">
+              <!--  IMAGE CONTAINER  -->
+              <div class="product-image-container">
+                <img class="product-image" src="images/eletronics/oven1.png">
+              </div>
+              <!--  RATING CONTAINER  -->
+              <div class="rating-container">
+                <div class="star-pack">
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-regular fa-star-half-stroke star-half"></i>
+                </div>
+                <p class="rating-count">(155)</p>
+              </div>
+              <!--  NAME CONTAINER  -->
+              <div class="product-name-container">
+                <p>Forno AEG BPE535160 B - Preto</p>
+              </div>
+              <!--  PRICE CONTAINER  -->
+              <div class="price-favorite-container">
+                <div class="all-price-container">
+                  <div class="product-discount-price-container">
+                    <p class="discount-price-tag">679,00€</p>
+                  </div>
+                  <div class="product-price-container">
+                    <p class="price-tag">577,15€</p>
+                  </div>
+                </div>
+                <!--  FAVORITE / CART  -->
+                <div class="product-favorite-cart-container">
+                  <button class="product-cart-button">
+                    <i class="fa-solid fa-plus product-cart-icon"></i>
+                  </button>
+                  <button class="product-favorite-button">
+                    <i class="fa-regular fa-heart product-favorite-icon"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+      
+            <!--  PRODUCTS PREVIEW  -->
+            <div class="product-preview" onclick="redirectToOvenOverview()">
+              <!-- TAGS -->
+              <p class="discount-tag">15%</p>
+              <img class="eficiency-tag" src="images/eficiency/A.png">
+              <!--  IMAGE CONTAINER  -->
+              <div class="product-image-container">
+                <img class="product-image" src="images/eletronics/oven1.png">
+              </div>
+              <!--  RATING CONTAINER  -->
+              <div class="rating-container">
+                <div class="star-pack">
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-regular fa-star-half-stroke star-half"></i>
+                </div>
+                <p class="rating-count">(155)</p>
+              </div>
+              <!--  NAME CONTAINER  -->
+              <div class="product-name-container">
+                <p>Forno AEG BPE535160 B - Preto</p>
+              </div>
+              <!--  PRICE CONTAINER  -->
+              <div class="price-favorite-container">
+                <div class="all-price-container">
+                  <div class="product-discount-price-container">
+                    <p class="discount-price-tag">679,00€</p>
+                  </div>
+                  <div class="product-price-container">
+                    <p class="price-tag">577,15€</p>
+                  </div>
+                </div>
+                <!--  FAVORITE / CART  -->
+                <div class="product-favorite-cart-container">
+                  <button class="product-cart-button">
+                    <i class="fa-solid fa-plus product-cart-icon"></i>
+                  </button>
+                  <button class="product-favorite-button">
+                    <i class="fa-regular fa-heart product-favorite-icon"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+      
+            <!--  PRODUCTS PREVIEW  -->
+            <div class="product-preview" onclick="redirectToOvenOverview()">
+              <!-- TAGS -->
+              <p class="discount-tag">15%</p>
+              <img class="eficiency-tag" src="images/eficiency/A.png">
+              <!--  IMAGE CONTAINER  -->
+              <div class="product-image-container">
+                <img class="product-image" src="images/eletronics/oven1.png">
+              </div>
+              <!--  RATING CONTAINER  -->
+              <div class="rating-container">
+                <div class="star-pack">
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-regular fa-star-half-stroke star-half"></i>
+                </div>
+                <p class="rating-count">(155)</p>
+              </div>
+              <!--  NAME CONTAINER  -->
+              <div class="product-name-container">
+                <p>Forno AEG BPE535160 B - Preto</p>
+              </div>
+              <!--  PRICE CONTAINER  -->
+              <div class="price-favorite-container">
+                <div class="all-price-container">
+                  <div class="product-discount-price-container">
+                    <p class="discount-price-tag">679,00€</p>
+                  </div>
+                  <div class="product-price-container">
+                    <p class="price-tag">577,15€</p>
+                  </div>
+                </div>
+                <!--  FAVORITE / CART  -->
+                <div class="product-favorite-cart-container">
+                  <button class="product-cart-button">
+                    <i class="fa-solid fa-plus product-cart-icon"></i>
+                  </button>
+                  <button class="product-favorite-button">
+                    <i class="fa-regular fa-heart product-favorite-icon"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+      
+            <!--  PRODUCTS PREVIEW  -->
+            <div class="product-preview" onclick="redirectToOvenOverview()">
+              <!-- TAGS -->
+              <p class="discount-tag">15%</p>
+              <img class="eficiency-tag" src="images/eficiency/A.png">
+              <!--  IMAGE CONTAINER  -->
+              <div class="product-image-container">
+                <img class="product-image" src="images/eletronics/oven1.png">
+              </div>
+              <!--  RATING CONTAINER  -->
+              <div class="rating-container">
+                <div class="star-pack">
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-regular fa-star-half-stroke star-half"></i>
+                </div>
+                <p class="rating-count">(155)</p>
+              </div>
+              <!--  NAME CONTAINER  -->
+              <div class="product-name-container">
+                <p>Forno AEG BPE535160 B - Preto</p>
+              </div>
+              <!--  PRICE CONTAINER  -->
+              <div class="price-favorite-container">
+                <div class="all-price-container">
+                  <div class="product-discount-price-container">
+                    <p class="discount-price-tag">679,00€</p>
+                  </div>
+                  <div class="product-price-container">
+                    <p class="price-tag">577,15€</p>
+                  </div>
+                </div>
+                <!--  FAVORITE / CART  -->
+                <div class="product-favorite-cart-container">
+                  <button class="product-cart-button">
+                    <i class="fa-solid fa-plus product-cart-icon"></i>
+                  </button>
+                  <button class="product-favorite-button">
+                    <i class="fa-regular fa-heart product-favorite-icon"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+      
+            <!--  PRODUCTS PREVIEW  -->
+            <div class="product-preview" onclick="redirectToOvenOverview()">
+              <!-- TAGS -->
+              <p class="discount-tag">15%</p>
+              <img class="eficiency-tag" src="images/eficiency/A.png">
+              <!--  IMAGE CONTAINER  -->
+              <div class="product-image-container">
+                <img class="product-image" src="images/eletronics/oven1.png">
+              </div>
+              <!--  RATING CONTAINER  -->
+              <div class="rating-container">
+                <div class="star-pack">
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-solid fa-star star-full"></i>
+                  <i class="fa-regular fa-star-half-stroke star-half"></i>
+                </div>
+                <p class="rating-count">(155)</p>
+              </div>
+              <!--  NAME CONTAINER  -->
+              <div class="product-name-container">
+                <p>Forno AEG BPE535160 B - Preto</p>
+              </div>
+              <!--  PRICE CONTAINER  -->
+              <div class="price-favorite-container">
+                <div class="all-price-container">
+                  <div class="product-discount-price-container">
+                    <p class="discount-price-tag">679,00€</p>
+                  </div>
+                  <div class="product-price-container">
+                    <p class="price-tag">577,15€</p>
+                  </div>
+                </div>
+                <!--  FAVORITE / CART  -->
+                <div class="product-favorite-cart-container">
+                  <button class="product-cart-button">
+                    <i class="fa-solid fa-plus product-cart-icon"></i>
+                  </button>
+                  <button class="product-favorite-button">
+                    <i class="fa-regular fa-heart product-favorite-icon"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="products-paginator-container">
+  
+            <button class="pagination-button-previous disabled">
+              <i class="fa-solid fa-less-than"></i>
+            </button>
+      
+            <button class="pagination-button active">
+              <p class="pagination-number">1</p>
+            </button>
+      
+            <button class="pagination-button">
+              <p class="pagination-number">2</p>
+            </button>
+            
+            <button class="pagination-button">
+              <p class="pagination-number">3</p>
+            </button>
+      
+            <button class="pagination-button">
+              <p class="pagination-number">4</p>
+            </button>
+      
+            <span class="pagination-dots">...</span>
+      
+            <button class="pagination-button">
+              <p class="pagination-number">8</p>
+            </button>
+      
+            <button class="pagination-button-next"> 
+              <i class="fa-solid fa-greater-than"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+
+    <!-- ++++++++++++++++++++++++ PRODUCT BEST SELLERS ++++++++++++++++++++++++ -->
+
+    <div class="best-seller-title">
+      <h> OS MAIS VISTOS EM "FORNOS"</h>
+    </div>
+    
+    
+
+    <div class="best-seller-products-container">
+      <div class="best-seller-slider">
+        
+        <div class="best-seller-preview" onclick="redirectToOvenOverview()">
+          <p class="best-seller-discount-tag">15%</p>
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/oven1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Forno de Encastre AEG BPE535160 B - Preto</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-discount-price-container">
+              <p class="best-seller-discount-price-tag">679,00€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">577,15€</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="best-seller-preview" onclick="redirectToOvenOverview()">
+          <p class="best-seller-discount-tag">15%</p>
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/oven1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Forno de Encastre AEG BPE535160 B - Preto</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-discount-price-container">
+              <p class="best-seller-discount-price-tag">679,00€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">577,15€</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="best-seller-preview" onclick="redirectToOvenOverview()">
+          <p class="best-seller-discount-tag">15%</p>
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/oven1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Forno de Encastre AEG BPE535160 B - Preto</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-discount-price-container">
+              <p class="best-seller-discount-price-tag">679,00€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">577,15€</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="best-seller-preview" onclick="redirectToOvenOverview()">
+          <p class="best-seller-discount-tag">15%</p>
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/oven1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Forno de Encastre AEG BPE535160 B - Preto</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-discount-price-container">
+              <p class="best-seller-discount-price-tag">679,00€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">577,15€</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="best-seller-preview" onclick="redirectToOvenOverview()">
+          <p class="best-seller-discount-tag">15%</p>
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/oven1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Forno de Encastre AEG BPE535160 B - Preto</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-discount-price-container">
+              <p class="best-seller-discount-price-tag">679,00€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">577,15€</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="best-seller-preview" onclick="redirectToOvenOverview()">
+          <p class="best-seller-discount-tag">15%</p>
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/oven1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Forno de Encastre AEG BPE535160 B - Preto</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-discount-price-container">
+              <p class="best-seller-discount-price-tag">679,00€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">577,15€</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="best-seller-preview" onclick="redirectToOvenOverview()">
+          <p class="best-seller-discount-tag">15%</p>
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/oven1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Forno de Encastre AEG BPE535160 B - Preto</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-discount-price-container">
+              <p class="best-seller-discount-price-tag">679,00€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">577,15€</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="best-seller-preview" onclick="redirectToOvenOverview()">
+          <p class="best-seller-discount-tag">15%</p>
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/oven1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Forno de Encastre AEG BPE535160 B - Preto</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-discount-price-container">
+              <p class="best-seller-discount-price-tag">679,00€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">577,15€</p>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="best-seller-preview" onclick="redirectToOvenOverview()">
+          <p class="best-seller-discount-tag">15%</p>
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/oven1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Forno de Encastre AEG BPE535160 B - Preto</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-discount-price-container">
+              <p class="best-seller-discount-price-tag">679,00€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">577,15€</p>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+    <!-- ++++++++++++++++++++++++ FOOTER ++++++++++++++++++++++++ -->
+
+    <div class="footer-container">
+
+      <div class="footer-display-1">
+        <div class="footer-newsletter">
+          <p class="footer-newsletter-title">Adere à nossa Newsletter!</p>
+          <div class="newsletter-search-container">
+            <input class="newsletter-search-bar" type="text" placeholder="Preenche com o teu e-mail">
+
+            <button class="newsletter-button">
+              <i class="fa-regular fa-envelope newsletter-icon"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="footer-socials">
+          <p class="footer-socials-title">Segue-nos nas Redes Sociais!</p>
+          <div class="socials-container">
+            <i class="fa-brands fa-facebook socials-icon"></i>
+            <i class="fa-brands fa-instagram socials-icon"></i>
+            <i class="fa-brands fa-x-twitter socials-icon"></i>
+            <i class="fa-brands fa-tiktok socials-icon"></i>
+            <i class="fa-brands fa-youtube socials-icon"></i>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-line"></div>
+
+      <div class="footer-display-2">
+        <div class="footer-info">
+
+          <div class="footer-info-alfka">
+            <p class="footer-info-title">Alfka</p>
+            <p class="footer-info-text">A nossa história</p>
+            <p class="footer-info-text">Lojas</p>
+            <p class="footer-info-text">Sustentabilidade</p>
+            <p class="footer-info-text">Política de Privacidade</p>
+          </div>
+
+          <div class="footer-info-alfka">
+            <p class="footer-info-title">Serviços</p>
+            <p class="footer-info-text">Instalação de Eletrodomésticos</p>
+            <p class="footer-info-text">Assistência Pós-Venda</p>
+            <p class="footer-info-text">Garantia</p>
+            <p class="footer-info-text">Reparações Certificadas</p>
+          </div>
+
+          <div class="footer-info-alfka">
+            <p class="footer-info-title">Apoio ao Cliente</p>
+            <p class="footer-info-text">Acompanhar Pedido</p>
+            <p class="footer-info-text">Perguntas Frequentes</p>
+            <p class="footer-info-text">Livro de Reclamações</p>
+            <p class="footer-info-text">Contacte-nos</p>
+          </div>
+
+          <div class="footer-info-alfka">
+            <p class="footer-info-title">Compra Online</p>
+            <p class="footer-info-text">Métodos de Pagamento</p>
+            <p class="footer-info-text">Entregas</p>
+            <p class="footer-info-text">Trocas e Devoluções</p>
+            <p class="footer-info-text">Ajuda</p>
+          </div>
+        </div>
+
+
+        <div class="footer-payments">
+          <img class="payment-images-mbway" src="images/logos/mbway-logo.png">
+          <img class="payment-images-multibanco" src="images/logos/multibanco-logo.png">
+          <img class="payment-images-visa" src="images/logos/visa-logo.png">
+          <img class="payment-images-mastercard" src="images/logos/mastercard-logo.png">
+          <img class="payment-images-paypal" src="images/logos/paypal-logo.png">
+        </div>
+      </div>
+
+      <div class="footer-display-3">
+        <div class="footer-legal">
+          <p class="footer-legal-text">© Alfka, Todos os direitos reservados. Alfka – Equipamentos e Serviços, Unipessoal, Lda., com sede em Massamá, Rua das Flores, nº 25, 2745-876 Massamá, NIF nº 512 345 678, com o capital social de 50.000,00 €. Todos os preços incluem IVA à taxa legal em vigor e são válidos apenas na loja online para o dia em que são publicados, salvo erros de publicação. Não dispensa a leitura dos termos e condições.</p>
+        </div>
+      </div>
+    </div>
+  
+    <!-- ++++++++++++++++++++++++ SCRIPTS ++++++++++++++++++++++++++++++ -->
+  
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>~
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    
+    <script src="scripts/products-page-scripts.js"></script>
+    <script src="scripts/general.js" type="module"></script>
+    <script src="scripts/firebase.js" type="module"></script>
+    
+  </body>
+</html>
+
+

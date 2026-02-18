@@ -1,0 +1,854 @@
+/* //////////////////////////////  MAIN PAGE GENERAL //////////////////////////////// */
+
+.wave-container {
+  position: absolute;
+  top: 0;
+  width: 8000px;
+  height: 330px;
+  z-index: 98;
+  max-width: 1440px;
+}
+
+.wave-container svg {
+  width: 100%;
+  height: 100%;
+  transform: scale(4, 1); 
+  transform-origin: bottom;
+}
+
+.line {
+  height: 1px;
+  background-color: #ffe5a2; 
+  width: 1350px;
+}
+
+/* //////////////////////////////  BANNER DISPLAY GENERAL //////////////////////////////// */
+
+.banner-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden; 
+  margin-right: 70px;
+  margin-left: 70px;
+  margin-top: 150px;
+  box-sizing: border-box;
+  height: 300px;
+  z-index: 99;
+}
+
+.banner-swipe {
+  display: flex;
+  transition: transform 0.5s ease-in-out; 
+}
+
+.banner-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  flex-shrink: 0; 
+}
+
+.banner-swipe-button-right,
+.banner-swipe-button-left {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 10px;
+  cursor: pointer;
+  z-index: 99;
+}
+
+.banner-swipe-button-right {
+  right: 10px;
+}
+
+.banner-swipe-button-left {
+  left: 10px;
+}
+
+.banner-swipe-button-right:hover,
+.banner-swipe-button-left:hover {
+  background-color: rgba(0, 0, 0, 0.082);
+}
+
+.banner-swipe-image {
+  color: white;
+}
+
+/* //////////////////////////////  ELETRONIC DISPLAY  //////////////////////////////// */
+
+/* ++++++++ ELETRONIC DISPLAY TITLE ++++++++++ */
+
+.eletronics-title {
+  margin-top: 80px;
+  margin-left: 90px;
+  font-size: 25px;
+  color: #3d3d3d;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ++++++++ ELETRONIC DISPLAY GENERAL ++++++++++ */
+
+.eletronics-display {
+  display: flex;
+  align-items: center;
+  height: 215px;
+  background: rgb(255, 255, 255);
+  border-radius: 15px;
+  margin-top: 5px;
+  margin-right: 75px;
+  margin-left: 75px;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.060);
+}
+
+/* ++++++++ ELETRONIC DISPLAY LEFT SIDE (LEFT ARROW) ++++++++++ */
+
+.left-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  
+}
+
+/* ++++++++ ELETRONIC DISPLAY MIDDLE SIDE (ELETRONICS) ++++++++++ */
+
+.middle-container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+
+}
+
+.eletronics-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(244, 244, 244);
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+
+.fridge-container {
+  display: flex;
+  align-items: center;
+}
+
+
+.fridge-button,
+.oven-button,
+.microwave-button,
+.exaustor-button,
+.water-heater-button,
+.air-conditioner-button,
+.vacuum-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: transparent;
+  border: none;
+  padding: 0px;
+  height: 180px;
+  width: 120px;
+  cursor: pointer;
+}
+
+
+.washing-machine-button,
+.dishwasher-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: transparent;
+  border: none;
+  margin-top: 15px;
+  padding: 0px;
+  height: 185px;
+  width: 100px;
+
+  cursor: pointer;
+}
+
+.fridge-button:hover .fridge-icon ,
+.washing-machine-button:hover .washing-machine-icon ,
+.dishwasher-button:hover .dishwasher-icon,
+.oven-button:hover .oven-icon,
+.microwave-button:hover .microwave-icon,
+.exaustor-button:hover .exaustor-icon,
+.water-heater-button:hover .water-heater-icon,
+.air-conditioner-button:hover .air-conditioner-icon,
+.vacuum-button:hover .vacuum-icon {
+  transform: scale(1.1); 
+  transition: transform 0.3s ease-in-out; 
+}
+
+.fridge-button:hover .fridge-name,
+.washing-machine-button:hover .washing-machine-name,
+.dishwasher-button:hover .dishwasher-name,
+.oven-button:hover .oven-name,
+.microwave-button:hover .microwave-name,
+.exaustor-button:hover .exaustor-name,
+.water-heater-button:hover .water-heater-name,
+.air-conditioner-button:hover .air-conditioner-name,
+.vacuum-button:hover .vacuum-name {
+  text-decoration: underline; 
+  transition: transform 0.3s ease-in-out; 
+}
+
+.fridge-icon {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;  
+  display: block;
+  transition: transform 0.3s ease-in-out;
+}
+
+.washing-machine-icon {
+  width: 85%;
+  height: 85%;
+  object-fit: contain;  
+  display: block;
+  transition: transform 0.3s ease-in-out;
+}
+
+.dishwasher-icon,
+.exaustor-icon,
+.water-heater-icon,
+.air-conditioner-icon {
+  width: 75%;
+  height: 75%;
+  object-fit: contain; 
+  display: block;
+  transition: transform 0.3s ease-in-out;
+}
+
+.oven-icon {
+  width: 120%;
+  height: 120%;
+  object-fit: contain;  
+  display: block;
+  margin-top: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.microwave-icon {
+  width: 65%;
+  height: 65%;
+  object-fit: contain;  
+  display: block;
+  transition: transform 0.3s ease-in-out;
+}
+
+.vacuum-icon {
+  width: 70%;
+  height: 70%;
+  object-fit: contain; 
+  display: block;
+  transition: transform 0.3s ease-in-out;
+}
+
+.fridge-name,
+.oven-name,
+.microwave-name,
+.exaustor-name,
+.water-heater-name,
+.vacuum-name,
+.air-conditioner-name  {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: #3d3d3d;
+  font-family: "Lato";
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 10px;
+  width: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.washing-machine-name,
+.dishwasher-name  {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: #3d3d3d;
+  font-family: "Lato";
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 12px;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* ++++++++ ELETRONIC DISPLAY RIGHT SIDE (RIGHT ARROW) ++++++++++ */
+
+.right-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  z-index: 99;
+}
+
+/* ++++++++SWIPE LEFT SIDE / SWIPE RIGHT SIDE ++++++++++ */
+
+.swipe-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.swipe-left-icon:hover,
+.swipe-right-icon:hover {
+  color: rgb(210, 15, 15);
+}
+.swipe-left-icon,
+.swipe-right-icon {
+  font-size: 15px;
+  color: #3d3d3d;
+}
+
+
+/* //////////////////////////////  BEST SELLER  //////////////////////////////// */
+
+/* ++++++++ BEST SELLER TITLE ++++++++++ */
+
+.best-seller-title {
+  margin-top: 80px;
+  margin-left: 90px;
+  font-size: 25px;
+  color: #3d3d3d;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ++++++++ BEST SELLER GENERAL ++++++++++ */
+
+.best-seller-products-container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 5px;
+  margin-left: 70px;
+  margin-right: 70px;
+  padding: 10px 10px 10px 10px;
+  padding-bottom: 20px;
+  height: 290px;
+  background: transparent;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+}
+
+/* ++++++++ BEST SELLER PRODUCTS PREVIEW ++++++++++ */
+
+.best-seller-preview {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  background-color: white;
+  padding: 20px;
+  width: 200px; 
+  height: 250px;
+  border-radius: 15px;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.061);
+  text-align: center;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.4s ease-in-out;
+}
+
+.best-seller-preview:hover {
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.105);
+  transition: transform 0.4s ease-in-out;
+}
+
+/* +++++++++++++ BEST SELLER PRODUCTS IMAGE +++++++++++++++*/
+
+.best-seller-image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  width: 100%;
+  height: 150px;
+}
+
+.best-seller-image {
+  width: 100%;
+  height: 100%;
+  display: center;
+  object-fit: contain; 
+  transition: transform 0.4s ease-in-out;
+}
+
+/* +++++++++++++ BEST SELLER PRODUCTS DISCOUNT TAG +++++++++++++++*/
+
+.best-seller-discount-tag {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 15px;
+  left: 0px;
+  padding: 8px 15px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #fdcc4f; /* Cor do fundo do desconto */
+  color: black; /* Cor do texto */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+
+/* +++++++++++++ BEST SELLER PRODUCTS NAME +++++++++++++++*/
+
+.best-seller-name-container {
+  position: block;
+  display: -webkit-box; 
+  -webkit-line-clamp: 3; 
+  -webkit-box-orient: vertical; 
+  overflow: hidden;
+  text-align: center; /* Centraliza horizontalmente */
+  font-weight: 600;
+  height: 60px;
+  width: 100%;
+  font-size: 14px;
+  margin-top: 15px;
+  margin-bottom: 0px;
+  padding: 0px;
+}
+
+
+/* +++++++++++++ BEST SELLER PRODUCTS PRICE +++++++++++++++*/
+
+.best-seller-all-price-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 40px;
+  width: 100px;
+}
+
+.best-seller-price-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 25px;
+  margin-top: 0px;
+  font-weight: bold;
+  font-style: italic;
+  background-color: white;
+  color: #fdcc4f;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5); /* Adiciona sombra ao texto */
+}
+
+.best-seller-discount-price-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-top: 5px;
+  font-style: italic;
+  text-decoration: line-through;
+  font-size: 12px;
+  background-color: white;
+  color: rgb(119, 119, 119);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); /* Adiciona sombra ao texto */
+}
+
+.best-seller-pvp-price-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-top: 5px;
+  font-style: italic;
+  font-size: 11px;
+  background-color: white;
+  color: rgb(119, 119, 119);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); /* Adiciona sombra ao texto */
+  
+}
+
+/* +++++++++++++ BEST SELLER PRODUCTS SLIDER +++++++++++++++*/
+
+.best-seller-slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  height: 390px;
+  min-width: fit-content;
+}
+
+.best-seller-products-container::-webkit-scrollbar {
+  height: 7px;
+}
+
+.best-seller-products-container::-webkit-scrollbar-track {
+  background: #fdcc4f38;
+  border-radius: 10px;
+  margin: 0px 10px 0px 10px;
+}
+
+.best-seller-products-container::-webkit-scrollbar-thumb {
+  background: #fdcc4f;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1); 
+}
+
+.best-seller-products-container::-webkit-scrollbar-thumb:hover {
+  background: #f7be62;
+  cursor: grab;
+}
+
+/* //////////////////////////////  REVIEWS  //////////////////////////////// */
+
+
+/* +++++++++++++ REVIEWS CONTAINER +++++++++++++++*/
+
+.review-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #3d3d3d;
+  height: 500px;
+  width: 100%;
+  margin-top: 100px;
+  padding-top: 50px;
+  padding-bottom: 00px;
+  overflow: hidden;
+}
+
+/* +++++++++++++ REVIEWS TITLE +++++++++++++++*/
+
+.review-title-container {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  top: 50px;
+  width: 100%;
+  color: white;
+  font-weight: 700;
+  font-family: 'Lato', sans-serif;
+}
+
+
+/* +++++++++++++ REVIEWS SLIDER +++++++++++++++*/
+
+.review-slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 50px;
+  position: relative;
+}
+
+
+/* +++++++++++++ REVIEWS DISPLAY +++++++++++++++*/
+
+.review-display {
+  display: flex;
+  transition: transform 0.5s ease;
+  width: calc(580px * 3 + 80px); /* Largura suficiente para 3 reviews */
+  gap: 90px;
+  overflow: hidden;
+}
+
+.review-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 40px;
+  background-color: white;
+  height: 220px;
+  width: 540px;
+  padding: 50px;
+  border-radius: 20px;
+  text-align: center;
+  transition: transform 0.5s ease;
+}
+
+.review-text {
+  font-size: 20px;
+  font-weight: 500;
+  color: #3d3d3d;
+}
+
+.review-name {
+  color:#fdcc4f;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+
+/* +++++++++++++ REVIEWS BUTTONS  +++++++++++++++*/
+
+.review-button-left, 
+.review-button-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 10px;
+  border: none;
+  border-radius: 25px;
+  z-index: 96;
+  background-color: transparent;
+  content: hidden;
+}
+
+.review-button-left {
+  left: calc(50% - 335px);
+}
+
+.review-button-right {
+  right: calc(50% - 335px);
+}
+
+.review-container:hover .review-button-left, 
+.review-container:hover .review-button-right {
+  background-color: #00000043;
+}
+
+.review-swipe-left-icon {
+  color: transparent;
+  margin-top: 1px;
+}
+
+.review-swipe-right-icon {
+  color: transparent;
+  margin-top: 1px;
+  
+}
+
+.review-container:hover .review-swipe-left-icon,
+.review-container:hover .review-swipe-right-icon {
+  color: white;
+}
+
+/* +++++++++++++ REVIEWS ANIMATIONS  +++++++++++++++*/
+
+.review-item.blur {
+  filter: blur(2px);
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.review-item.center {
+  filter: none;
+  opacity: 1;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.slide-in-right {
+  animation: slideInRight 0.5s ease forwards;
+}
+.slide-in-left {
+  animation: slideInLeft 0.5s ease forwards;
+}
+.slide-out-left {
+  animation: slideOutLeft 0.5s ease forwards;
+}
+.slide-out-right {
+  animation: slideOutRight 0.5s ease forwards;
+}
+
+/* //////////////////////////////  EXTRAS  //////////////////////////////// */
+
+/* +++++++++++++ EXTRAS GENERAL +++++++++++++++*/
+
+.extras-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0px;
+  margin-right: 90px;
+  margin-left: 90px;
+  margin-top: 100px;
+  height: 200px;
+}
+
+/* +++++++++++++ EXTRAS DISPLAY +++++++++++++++*/
+
+.extras-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 60px;
+  margin-right: 60px;
+  padding: 0px;
+  background-color: trasnparent;
+}
+
+.extra-icon {
+  font-size: 26px;
+  color:#fdcc4f;
+}
+
+
+.extra-title {
+  color:#3d3d3d;
+  font-weight: bold;
+  font-size: 17px;
+  margin-top: 18px;
+}
+
+.extra-text {
+  font-size: 13px;
+  text-align: center;
+  margin-top: 6px;
+}
+
+
+/* //////////////////////////////  POP UPS  //////////////////////////////// */
+
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 300px;
+  position: relative;
+}
+
+.success-icon {
+  font-size: 40px;
+  color: green;
+  margin-bottom: 10px;
+}
+
+.error-icon {
+  font-size: 40px;
+  color: red;
+  margin-bottom: 10px;
+}
+
+.popup-content p {
+  margin: 10px 0 20px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+}
+
+.popup-content button {
+  background-color: #fdcb50;
+  color: #3d3d3d;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.popup-content button:hover {
+  background-color: #f7be62;
+}
+
+.error-label {
+  color: red;
+  font-family: "Lato";
+  font-size: 14px;
+  margin-top: 1px;
+  display: block;
+  font-family: Arial, sans-serif;
+}
+
+.popup-close-button {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}

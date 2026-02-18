@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <Title> AS Eletronics</Title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="styles/general.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/login-page.css">
+    <link rel="stylesheet" href="styles/footer.css">
+
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  </head>
+
+  <body>
+    <!-- ++++++++++++++++++++++++ POP-UPS ++++++++++++++++++++++++ -->
+
+    <div id="success-popup" class="popup-overlay">
+      <div class="popup-content">
+        <i class="fa-solid fa-check-circle success-icon"></i>
+        <p id="success-message"></p>
+        <button id="success-close-button">Fechar</button>
+      </div>
+    </div>
+
+    <div id="error-popup" class="popup-overlay">
+      <div class="popup-content">
+        <i class="fa-solid fa-times-circle error-icon"></i>
+        <p id="error-message"></p>
+        <button id="error-close-button">Fechar</button>
+      </div>
+    </div>
+
+    <div id="dashboard-popup" class="popup-overlay" style="display: none;">
+      <div class="popup-content">
+        <button id="dashboard-close-button" class="popup-close-button">X</button>
+        <p>Dashboard - Utilizadores Ativos</p>
+        <canvas id="user-activity-chart"></canvas>
+      </div>
+    </div>
+
+    <!-- ++++++++++++++++++++++++ HEADER ++++++++++++++++++++++++ -->
+    
+    <div class="header-container">
+      <div class="header-1">
+
+        <div class="temp">
+          <div class="header-1-left-section">
+            <button class="contacts-button">
+              <p>Contactos</p>
+            </button>
+
+            <button class="shops-button">
+              <p>Lojas</p>
+            </button>
+          </div>
+
+          <div class="header-1-right-section">
+            <button class="shipping-button">
+              <p>Compras acima de 29.99€ = <span class="shipping-highlight">PORTES GRÁTIS</span></p>
+            </button>
+
+            <button class="returns-button">
+              <p>Trocas e Devoluções</p>
+            </button>
+
+            <button class="newsletter-button">
+              <p>Newsletter</p>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-2">
+        <!--LEFT SIDE-->
+
+        <div class="temp2">
+          <div class="header-2-left-section">
+            <button class="bars-button">
+              <i class="fa-solid fa-bars bars-icon-header"></i>
+            </button>
+
+            <button class="alfka-button" onclick="redirectToMainPage()">
+              <img class="alfka-icon-header" src="images/logos/alfka.png">
+            </button>
+          </div>
+
+          <!--MIDDLE SIDE-->
+          <div class="header-2-middle-section">
+
+            <div class="search-container">
+              <input class="search-bar" type="text" placeholder="O que procura?">
+              <button class="clear-button">
+                <i class="fa-solid fa-xmark xmark-icon-header"></i>
+              </button>
+
+              <button class="search-button">
+                <i class="fa-solid fa-magnifying-glass search-icon-header"></i>
+              </button>
+
+            </div>
+          </div>
+
+          <!--RIGHT SIDE-->
+          <div class="header-2-right-section">
+
+            <div class="cart-container">
+              <div class="cart-button">
+                <i class="fa-solid fa-cart-shopping cart-icon-header"></i>
+              </div>
+            </div>
+
+            <div class="favorite-container">
+              <div class="favorite-button">
+                <i class="fa-solid fa-heart favorite-icon-header"></i>
+                <div class="tooltip">Favoritos</div>
+              </div>
+            </div>
+
+            <div class="user-container">
+              <div class="user-button">
+                <i class="fa-solid fa-user user-icon-header"></i>
+
+                <div class="tooltip" id="user-tooltip">
+                  <button class="login-register-button" id="login-register-button" onclick="redirectToLoginPage()">
+                    <i class="fa-solid fa-user tooltip-icons"></i>
+                    <p class="tooltip-name">Login / Registar</p>
+                  </button>
+                
+                  <button class="account-button" id="account-button" style="display: none;">
+                    <i class="fa-solid fa-user tooltip-icons"></i>
+                    <p class="tooltip-name">A Minha Conta</p>
+                  </button>
+                
+                  <button class="dashboard-button" id="dashboard-button" style="display: none;">
+                    <i class="fa-solid fa-database tooltip-icons"></i>
+                    <p class="tooltip-name">Painel de Controlo</p>
+                  </button>
+
+                  <button class="notifications-button" id="notifications-button" style="display: none;">
+                    <i class="fa-solid fa-bell tooltip-icons"></i>
+                    <p class="tooltip-name">Notificações</p>
+                  </button>
+                
+                  <button class="info-button" id="info-button" style="display: none;">
+                    <i class="fa-solid fa-circle-info tooltip-icons"></i>
+                    <p class="tooltip-name">Info</p>
+                  </button>
+                
+                  <button class="settings-button" id="settings-button" style="display: none;">
+                    <i class="fa-solid fa-gear tooltip-icons"></i>
+                    <p class="tooltip-name">Definições</p>
+                  </button>
+                
+                  <button class="logout-button" id="logout-button" style="display: none;">
+                    <i class="fa-solid fa-arrow-right-from-bracket tooltip-icons"></i>
+                    <p class="tooltip-name">Sair da Conta</p>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ++++++++++++++++++++++++ LOGIN / REGISTER ++++++++++++++++++++++++ -->
+
+    <div class="login-page-container">
+      <!-- Pop-up de sucesso -->
+      <div id="success-popup" class="popup-overlay">
+        <div class="popup-content">
+          <i class="fa-solid fa-check-circle success-icon"></i>
+          <p id="success-message"></p>
+          <button id="success-close-button">Fechar</button>
+        </div>
+      </div>
+
+      <!-- Pop-up de erro -->
+      <div id="error-popup" class="popup-overlay">
+        <div class="popup-content">
+          <i class="fa-solid fa-times-circle error-icon"></i>
+          <p id="error-message"></p>
+          <button id="error-close-button">Fechar</button>
+        </div>
+      </div>
+
+
+      <div class="login-page-box">
+        <p class="login-page-title">INICIO DE SESSÃO</p>
+        <p class="login-page-text">A forma mais rápida de rever as suas seleções, endereços e submeter o seu pedido é escolher esta opção.</p>
+  
+        <form class="login-page-form" id="login-form" onsubmit="handleLogin(event)">
+
+          <div class="login-fields head">
+            <label class="login-page-label" for="email">Endereço de email *</label>
+            <input class="login-page-input" type="email" id="login-email" placeholder="Insira o seu email">
+          </div>
+  
+          <div class="login-fields">
+            <label class="login-page-label" for="password">Palavra-passe *</label>
+            <input class="login-page-input" type="password" id="login-password" placeholder="Insira a sua palavra-chave">
+          </div>
+
+          <div class="login-fields forgot">
+            <a class="login-page-link" href="#">Esqueceu a palavra-passe?</a>
+          </div>
+
+          <button class="login-page-button" type="submit">INICIAR SESSÃO</button>
+        </form>
+      </div>
+
+
+
+      <div class="register-page-box">
+        <p class="register-page-title">CRIAR CONTA</p>
+        <p class="register-page-text">Para efetuar as suas compras não é obrigatório registar-se. Pode fazê-lo como convidado.</p>
+  
+        <form class="register-page-form" id="register-form">
+
+          <!-- Campo de email inicial -->
+          <div class="register-fields head">
+            <label class="register-page-label" for="register-email"
+              >Endereço de email *</label
+            >
+            <input
+              class="register-page-input"
+              type="email"
+              id="register-email"
+              placeholder="Insira o seu email"
+              required
+            />
+          </div>
+
+          <button
+            class="register-page-button"
+            type="button"
+            id="continue-button"
+          >
+            CONTINUAR
+          </button>
+
+          <!-- Campos adicionais inicialmente ocultos -->
+          <div id="register-additional-fields" style="display: none;">
+
+            <div class="register-fields">
+              <label class="register-page-label" for="register-name">Nome *</label>
+              <input
+                class="register-page-input"
+                type="text"
+                id="register-name"
+                placeholder="Insira o seu nome"
+                required
+              />
+            </div>
+  
+            <div class="register-fields">
+              <label class="register-page-label" for="register-address">Morada *</label>
+              <input
+                class="register-page-input"
+                type="text"
+                id="register-address"
+                placeholder="Insira a sua morada"
+                maxlength="28"
+                required
+              />
+            </div>
+  
+            <div class="register-fields">
+
+              <label class="register-page-label" for="register-country">País *</label>
+              <select class="register-page-input" id="register-country" required>
+                <option value="">Selecione o país</option>
+                <option value="Portugal">Portugal</option>
+                <option value="Brasil">Brasil</option>
+                <option value="Japão">Japão</option>
+                <option value="Itália">Itália</option>
+                <option value="Sevilha">Sevilha</option>
+                <option value="Noruega">Noruega</option>
+                <option value="Islândia">Islândia</option>
+              </select>
+            </div>
+            
+  
+            <div class="register-fields">
+              <label class="register-page-label" for="register-password">Introduza uma palavra-chave *</label>
+              <input
+                class="register-page-input"
+                type="password"
+                id="register-password"
+                placeholder="Insira a sua palavra-chave"
+                required
+              />
+            </div>
+  
+            <div class="register-fields">
+              <label class="register-page-label" for="register-confirm-password">Confirme a palavra-chave *</label>
+              <input
+                class="register-page-input"
+                type="password"
+                id="register-confirm-password"
+                placeholder="Confirme a sua palavra-chave"
+                required
+              />
+            </div>
+  
+            <div class="register-checkbox">
+              <input type="checkbox" id="register-newsletter" />
+              <label for="register-newsletter">Desejo receber informações da Loja e dos seus parceiros.</label>
+            </div>
+  
+            <p class="register-page-privacy">
+              * Ao enviar estes dados está a aceitar a nossa <a href="#">Política de Privacidade</a>.
+            </p>
+  
+            <!-- Botão final como "Confirmar Dados" -->
+            <button
+            class="register-page-button"
+            type="button"
+            id="register-button"
+          >
+            CONFIRMAR DADOS
+          </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ++++++++++++++++++++++++ FOOTER ++++++++++++++++++++++++ -->
+
+    <div class="footer-container">
+
+      <div class="footer-display-1">
+        <div class="footer-newsletter">
+          <p class="footer-newsletter-title">Adere à nossa Newsletter!</p>
+          <div class="newsletter-search-container">
+            <input class="newsletter-search-bar" type="text" placeholder="Preenche com o teu e-mail">
+
+            <button class="newsletter-button">
+              <i class="fa-regular fa-envelope newsletter-icon"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="footer-socials">
+          <p class="footer-socials-title">Segue-nos nas Redes Sociais!</p>
+          <div class="socials-container">
+            <i class="fa-brands fa-facebook socials-icon"></i>
+            <i class="fa-brands fa-instagram socials-icon"></i>
+            <i class="fa-brands fa-x-twitter socials-icon"></i>
+            <i class="fa-brands fa-tiktok socials-icon"></i>
+            <i class="fa-brands fa-youtube socials-icon"></i>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="line"></div>
+
+      <div class="footer-display-2">
+        <div class="footer-info">
+
+          <div class="footer-info-alfka">
+            <p class="footer-info-title">Alfka</p>
+            <p class="footer-info-text">A nossa história</p>
+            <p class="footer-info-text">Lojas</p>
+            <p class="footer-info-text">Sustentabilidade</p>
+            <p class="footer-info-text">Política de Privacidade</p>
+          </div>
+
+          <div class="footer-info-alfka">
+            <p class="footer-info-title">Serviços</p>
+            <p class="footer-info-text">Instalação de Eletrodomésticos</p>
+            <p class="footer-info-text">Assistência Pós-Venda</p>
+            <p class="footer-info-text">Garantia</p>
+            <p class="footer-info-text">Reparações Certificadas</p>
+          </div>
+
+          <div class="footer-info-alfka">
+            <p class="footer-info-title">Apoio ao Cliente</p>
+            <p class="footer-info-text">Acompanhar Pedido</p>
+            <p class="footer-info-text">Perguntas Frequentes</p>
+            <p class="footer-info-text">Livro de Reclamações</p>
+            <p class="footer-info-text">Contacte-nos</p>
+          </div>
+
+          <div class="footer-info-alfka">
+            <p class="footer-info-title">Compra Online</p>
+            <p class="footer-info-text">Métodos de Pagamento</p>
+            <p class="footer-info-text">Entregas</p>
+            <p class="footer-info-text">Trocas e Devoluções</p>
+            <p class="footer-info-text">Ajuda</p>
+          </div>
+        </div>
+
+
+        <div class="footer-payments">
+          <img class="payment-images-mbway" src="images/logos/mbway-logo.png">
+          <img class="payment-images-multibanco" src="images/logos/multibanco-logo.png">
+          <img class="payment-images-visa" src="images/logos/visa-logo.png">
+          <img class="payment-images-mastercard" src="images/logos/mastercard-logo.png">
+          <img class="payment-images-paypal" src="images/logos/paypal-logo.png">
+        </div>
+      </div>
+
+      <div class="footer-display-3">
+        <div class="footer-legal">
+          <p class="footer-legal-text">© Alfka, Todos os direitos reservados. Alfka – Equipamentos e Serviços, Unipessoal, Lda., com sede em Massamá, Rua das Flores, nº 25, 2745-876 Massamá, NIF nº 512 345 678, com o capital social de 50.000,00 €. Todos os preços incluem IVA à taxa legal em vigor e são válidos apenas na loja online para o dia em que são publicados, salvo erros de publicação. Não dispensa a leitura dos termos e condições.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- ++++++++++++++++++++++++ SCRIPTS ++++++++++++++++++++++++++++++ -->
+
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="scripts/login-page-scripts.js"></script>
+    <script src="scripts/firebase.js" type="module"></script>
+    
+  </body>
+
+</html>

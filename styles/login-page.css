@@ -1,0 +1,294 @@
+/* ++++++++++ LOGIN GENERAL ++++++++++++ */
+
+.login-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 70px;
+  margin-top: 155px;
+  margin-right: 150px;
+  margin-left: 150px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 50px;
+}
+
+/* ++++++++++ LOGIN ++++++++++++ */
+
+.login-page-box {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.login-fields{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  box-sizing: border-box;
+  gap: 7px;
+  margin-top: 18px;
+  width: 100%;
+}
+
+.login-fields.head {
+  margin-top: 20px;
+}
+
+.login-fields.forgot {
+  margin-top: 13px;
+}
+
+.login-page-button {
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+  font-family: "Lato";
+  color: #3d3d3d;
+  background-color: #fdcb50;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 18px;
+}
+
+.login-page-link {
+  color: #003b8b;
+  font-family: "Lato";
+  text-decoration: none;
+  font-size: 15px;
+  margin-bottom: 0px;
+}
+
+.login-page-link:hover {
+  text-decoration: underline;
+}
+
+/* ++++++++++ LOGIN / REGISTER ++++++++++++ */
+
+.login-page-title,
+.register-page-title {
+  font-size: 28px;
+  width: 100%;
+  font-weight: 700;
+  font-family: "Lato";
+  color: #3d3d3d;
+}
+
+.login-page-text,
+.register-page-text {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 15px;
+  font-family: "Lato";
+  margin-top: 7px;
+  width: 100%;
+}
+
+.login-page-form,
+.register-page-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.login-page-label,
+.register-page-label {
+  margin: 0;
+  color: #3d3d3d;
+  font-size: 15px;
+  font-family: "Lato";
+  font-weight: bold;
+}
+
+.login-page-input,
+.register-page-input {
+  color: #3d3d3d;
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+  font-family: "Lato";
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.login-page-button:hover,
+.register-page-button:hover {
+  background-color: #f7be62;
+}
+
+/* ++++++++++ REGISTER ++++++++++++ */
+
+.register-page-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.register-additional-fields {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.register-fields{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  box-sizing: border-box;
+  gap: 7px;
+  margin-top: 18px;
+  width: 100%;
+}
+
+.register-fields.head {
+  margin-top: 20px;
+}
+
+.login-fields.forgot-password {
+  margin-top: 10px;
+}
+
+.register-page-button {
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+  font-family: "Lato";
+  color: #3d3d3d;
+  background-color: #fdcb50;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.date-page-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 30px;
+}
+
+.date-page-input {
+  color: #3d3d3d;
+  padding: 10px;
+  width: 100%;
+  font-size: 1em;
+  font-family: "Lato";
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.register-checkbox {
+  margin-top: 20px;
+}
+
+.register-page-privacy {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #3d3d3d;
+}
+
+.register-page-privacy a {
+  font-family: "Lato";
+  color: #003b8b;
+  text-decoration: underline;
+}
+
+
+#additional-fields {
+  display: none;
+  transition: all 0.3s ease-in-out;
+}
+
+/* ++++++++++ POP UPS ++++++++++++ */
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 300px;
+  position: relative;
+}
+
+.success-icon {
+  font-size: 40px;
+  color: green;
+  margin-bottom: 10px;
+}
+
+.error-icon {
+  font-size: 40px;
+  color: red;
+  margin-bottom: 10px;
+}
+
+.popup-content p {
+  margin: 10px 0 20px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+}
+
+.popup-content button {
+  background-color: #fdcb50;
+  color: #3d3d3d;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.popup-content button:hover {
+  background-color: #f7be62;
+}
+
+.error-label {
+  color: red;
+  font-family: "Lato";
+  font-size: 14px;
+  margin-top: 1px;
+  display: block;
+  font-family: Arial, sans-serif;
+}
+
+.popup-close-button {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.footer-container {
+  margin-top: 100px;
+}

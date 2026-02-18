@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <Title> AS Eletronics</Title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="styles/general.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/main-page.css">
+    <link rel="stylesheet" href="styles/footer.css">
+
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  </head>
+
+  <body>
+
+    <!-- ++++++++++++++++++++++++ POP-UPS ++++++++++++++++++++++++ -->
+  
+    <div id="success-popup" class="popup-overlay">
+      <div class="popup-content">
+        <i class="fa-solid fa-check-circle success-icon"></i>
+        <p id="success-message"></p>
+        <button id="success-close-button">Fechar</button>
+      </div>
+    </div>
+
+    <div id="error-popup" class="popup-overlay">
+      <div class="popup-content">
+        <i class="fa-solid fa-times-circle error-icon"></i>
+        <p id="error-message"></p>
+        <button id="error-close-button">Fechar</button>
+      </div>
+    </div>
+
+    <div id="dashboard-popup" class="popup-overlay" style="display: none;">
+      <div class="popup-content">
+        <button id="dashboard-close-button" class="popup-close-button">X</button>
+        <p>Dashboard - Utilizadores Ativos</p>
+        <canvas id="user-activity-chart"></canvas>
+      </div>
+    </div>
+    
+    <!-- ++++++++++++++++++++++++ HEADER ++++++++++++++++++++++++ -->
+    
+    <div class="header-container">
+      <div class="header-1">
+
+        <div class="temp">
+          <div class="header-1-left-section">
+            <button class="contacts-button">
+              <p>Contactos</p>
+            </button>
+
+            <button class="shops-button">
+              <p>Lojas</p>
+            </button>
+          </div>
+
+          <div class="header-1-right-section">
+            <button class="shipping-button">
+              <p>Compras acima de 29.99€ = <span class="shipping-highlight">PORTES GRÁTIS</span></p>
+            </button>
+
+            <button class="returns-button">
+              <p>Trocas e Devoluções</p>
+            </button>
+
+            <button class="newsletter-button">
+              <p>Newsletter</p>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-2">
+        <!--LEFT SIDE-->
+
+        <div class="temp2">
+          <div class="header-2-left-section">
+            <button class="bars-button">
+              <i class="fa-solid fa-bars bars-icon-header"></i>
+            </button>
+
+            <button class="alfka-button" onclick="redirectToMainPage()">
+              <img class="alfka-icon-header" src="images/logos/alfka.png">
+            </button>
+          </div>
+
+          <!--MIDDLE SIDE-->
+          <div class="header-2-middle-section">
+
+            <div class="search-container">
+              <input class="search-bar" type="text" placeholder="O que procura?">
+              <button class="clear-button">
+                <i class="fa-solid fa-xmark xmark-icon-header"></i>
+              </button>
+
+              <button class="search-button">
+                <i class="fa-solid fa-magnifying-glass search-icon-header"></i>
+              </button>
+
+            </div>
+          </div>
+
+          <!--RIGHT SIDE-->
+          <div class="header-2-right-section">
+
+            <div class="cart-container">
+              <div class="cart-button">
+                <i class="fa-solid fa-cart-shopping cart-icon-header"></i>
+              </div>
+            </div>
+
+            <div class="favorite-container">
+              <div class="favorite-button">
+                <i class="fa-solid fa-heart favorite-icon-header"></i>
+                <div class="tooltip">Favoritos</div>
+              </div>
+            </div>
+
+            <div class="user-container">
+              <div class="user-button">
+                <i class="fa-solid fa-user user-icon-header"></i>
+
+                <div class="tooltip" id="user-tooltip">
+                  <button class="login-register-button" id="login-register-button" onclick="redirectToLoginPage()">
+                    <i class="fa-solid fa-user tooltip-icons"></i>
+                    <p class="tooltip-name">Login / Registar</p>
+                  </button>
+                
+                  <button class="account-button" id="account-button" style="display: none;">
+                    <i class="fa-solid fa-user tooltip-icons"></i>
+                    <p class="tooltip-name">A Minha Conta</p>
+                  </button>
+                
+                  <button class="dashboard-button" id="dashboard-button" style="display: none;">
+                    <i class="fa-solid fa-database tooltip-icons"></i>
+                    <p class="tooltip-name">Painel de Controlo</p>
+                  </button>
+
+                  <button class="notifications-button" id="notifications-button" style="display: none;">
+                    <i class="fa-solid fa-bell tooltip-icons"></i>
+                    <p class="tooltip-name">Notificações</p>
+                  </button>
+                
+                  <button class="info-button" id="info-button" style="display: none;">
+                    <i class="fa-solid fa-circle-info tooltip-icons"></i>
+                    <p class="tooltip-name">Info</p>
+                  </button>
+                
+                  <button class="settings-button" id="settings-button" style="display: none;">
+                    <i class="fa-solid fa-gear tooltip-icons"></i>
+                    <p class="tooltip-name">Definições</p>
+                  </button>
+                
+                  <button class="logout-button" id="logout-button" style="display: none;">
+                    <i class="fa-solid fa-arrow-right-from-bracket tooltip-icons"></i>
+                    <p class="tooltip-name">Sair da Conta</p>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ++++++++++++++++++++++++ PROMOTIONAL BANNER ++++++++++++++++++++++++ -->
+
+    <div class="banner-container">
+      <div id="banner-swipe" class="banner-swipe">
+        <img class="banner-image" src="images/banners/banner1.jpg">
+        <img class="banner-image" src="images/banners/banner2.jpg">
+        <img class="banner-image" src="images/banners/banner3.jpg">
+      </div>
+    
+      <button class="banner-swipe-button-right" onclick="nextImage()">
+        <i class="fa-solid fa-arrow-right banner-swipe-image"></i>
+      </button>
+    
+      <button class="banner-swipe-button-left" onclick="prevImage()">
+        <i class="fa-solid fa-arrow-left banner-swipe-image"></i>
+      </button>
+    </div> 
+
+    <!-- ++++++++++++++++++++++++ ELETRONICS SELECTOR ++++++++++++++++++++++++ -->
+    
+    <div class="eletronics-title">
+      <h>OS NOSSOS PRODUTOS</h>
+    </div>
+
+    <div class="eletronics-display">  
+      <div class="left-container">
+        <button class="swipe-button">
+          <i class="fa-solid fa-less-than swipe-left-icon"></i>
+        </button>
+      </div>
+
+      <div class="middle-container">
+        <button class="fridge-button" onclick="redirectToFridgePage()">
+          <div class="eletronics-circle">
+            <img class="fridge-icon" src="images/icons/fridge.png">
+          </div>
+          <p class="fridge-name">Frigoríficos</p>
+        </button>
+
+        <button class="washing-machine-button" onclick="redirectToWashingMachinePage()">
+          <div class="eletronics-circle">
+            <img class="washing-machine-icon" src="images/icons/washing-machine.png">
+          </div>
+          <p class="washing-machine-name">Máquinas<br>de Roupa</p>
+        </button>
+
+        <button class="dishwasher-button" onclick="redirectToDishwasherPage()">
+          <div class="eletronics-circle">
+            <img class="dishwasher-icon" src="images/icons/dishwasher.png">
+          </div>
+          <p class="dishwasher-name">Máquinas<br>de Loiça</p>
+        </button>
+
+        <button class="oven-button" onclick="redirectToOvenPage()">
+          <div class="eletronics-circle">
+            <img class="oven-icon" src="images/icons/oven.png">
+          </div>
+          <p class="oven-name">Fornos</p>
+        </button>
+
+        <button class="microwave-button">
+          <div class="eletronics-circle">
+            <img class="microwave-icon" src="images/icons/microwave.png">
+          </div>
+          <p class="microwave-name">Microondas</p>
+        </button>
+
+        <button class="exaustor-button">
+          <div class="eletronics-circle">
+            <img class="exaustor-icon" src="images/icons/exaustor.png">
+          </div>
+          <p class="exaustor-name">Exaustores</p>
+        </button>
+
+        <button class="water-heater-button">
+          <div class="eletronics-circle">
+            <img class="water-heater-icon" src="images/icons/water-heater.png">
+          </div>
+          <p class="water-heater-name">Termoaculadores</p>
+        </button>
+
+        <button class="air-conditioner-button">
+          <div class="eletronics-circle">
+            <img class="air-conditioner-icon" src="images/icons/air-conditioner.png">
+          </div>
+          <p class="air-conditioner-name">Ar Condicionado</p>
+        </button>
+      </div>
+
+
+      <div class="right-container">
+        <button class="swipe-button">
+          <i class="fa-solid fa-greater-than swipe-right-icon"></i>
+        </button>
+      </div>
+    </div>   
+
+    <!-- ++++++++++++++++++++++++  BEST SELLERS ++++++++++++++++++++++++ -->
+
+    <div class="best-seller-title">
+      <h> OS MAIS VENDIDOS</h>
+    </div>
+    
+    <div class="best-seller-products-container">
+      <div class="best-seller-slider">
+        
+        <div class="best-seller-preview" onclick="redirectToFridgeOverview()">
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/fridge1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Frigorífico Combinado Miele KD 4052 E Active - Prata</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-pvp-price-container">
+              <p class="best-seller-price-tag">PVPr 1149,99€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">949,99€</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="best-seller-preview" onclick="redirectToDishwasherOverview()">
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/dishwasher1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Máquina de Lavar Loiça SMEG STX235CLLO - Aço Inox</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-pvp-price-container">
+              <p class="best-seller-pvp-price-tag">PVPr 1799,00€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">1499,00€</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="best-seller-preview" onclick="redirectToOvenOverview()">
+          <p class="best-seller-discount-tag">15%</p>
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/oven1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Forno de Encastre AEG BPE535160 B - Preto</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-discount-price-container">
+              <p class="best-seller-discount-price-tag">679,00€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">577,15€</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="best-seller-preview" onclick="redirectToWashingMachineOverview()">
+          <!--  IMAGE CONTAINER  -->
+          <p class="best-seller-discount-tag">15%</p>
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/washing-machine1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Máquina de Lavar Roupa BOSCH WGG254Z1ES - Branco</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-discount-price-container">
+              <p class="best-seller-discount-price-tag">669,00€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">499,00€</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="best-seller-preview" onclick="redirectToFridgeOverview()">
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/fridge1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Frigorífico Combinado Miele KD 4052 E Active - Prata</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-pvp-price-container">
+              <p class="best-seller-price-tag">PVPr 1149,99€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">949,99€</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="best-seller-preview" onclick="redirectToDishwasherOverview()">
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/dishwasher1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Máquina de Lavar Loiça SMEG STX235CLLO - Aço Inox</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-pvp-price-container">
+              <p class="best-seller-pvp-price-tag">PVPr 1799,00€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">1499,00€</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="best-seller-preview" onclick="redirectToOvenOverview()">
+          <p class="best-seller-discount-tag">15%</p>
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/oven1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Forno de Encastre AEG BPE535160 B - Preto</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-discount-price-container">
+              <p class="best-seller-discount-price-tag">679,00€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">577,15€</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="best-seller-preview" onclick="redirectToWashingMachineOverview()">
+          <!--  IMAGE CONTAINER  -->
+          <p class="best-seller-discount-tag">15%</p>
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/washing-machine1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Máquina de Lavar Roupa BOSCH WGG254Z1ES - Branco</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-discount-price-container">
+              <p class="best-seller-discount-price-tag">669,00€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">499,00€</p>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- ++++++++++++++++++++++++  IN PROMOTION ++++++++++++++++++++++++ -->
+
+    <div class="best-seller-title promotion">
+      <h> EM PROMOÇÃO</h>
+    </div>
+    
+    <div class="best-seller-products-container promotion">
+      <div class="best-seller-slider">
+        
+        <div class="best-seller-preview" onclick="redirectToOvenOverview()">
+          <p class="best-seller-discount-tag">15%</p>
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/oven1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Forno de Encastre AEG BPE535160 B - Preto</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-discount-price-container">
+              <p class="best-seller-discount-price-tag">679,00€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">577,15€</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="best-seller-preview" onclick="redirectToWashingMachineOverview()">
+          <!--  IMAGE CONTAINER  -->
+          <p class="best-seller-discount-tag">15%</p>
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/washing-machine1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Máquina de Lavar Roupa BOSCH WGG254Z1ES - Branco</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-discount-price-container">
+              <p class="best-seller-discount-price-tag">669,00€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">499,00€</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="best-seller-preview" onclick="redirectToOvenOverview()">
+          <p class="best-seller-discount-tag">15%</p>
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/oven1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Forno de Encastre AEG BPE535160 B - Preto</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-discount-price-container">
+              <p class="best-seller-discount-price-tag">679,00€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">577,15€</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="best-seller-preview" onclick="redirectToWashingMachineOverview()">
+          <!--  IMAGE CONTAINER  -->
+          <p class="best-seller-discount-tag">15%</p>
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/washing-machine1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Máquina de Lavar Roupa BOSCH WGG254Z1ES - Branco</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-discount-price-container">
+              <p class="best-seller-discount-price-tag">669,00€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">499,00€</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="best-seller-preview" onclick="redirectToOvenOverview()">
+          <p class="best-seller-discount-tag">15%</p>
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/oven1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Forno de Encastre AEG BPE535160 B - Preto</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-discount-price-container">
+              <p class="best-seller-discount-price-tag">679,00€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">577,15€</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="best-seller-preview" onclick="redirectToWashingMachineOverview()">
+          <!--  IMAGE CONTAINER  -->
+          <p class="best-seller-discount-tag">15%</p>
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/washing-machine1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Máquina de Lavar Roupa BOSCH WGG254Z1ES - Branco</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-discount-price-container">
+              <p class="best-seller-discount-price-tag">669,00€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">499,00€</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="best-seller-preview" onclick="redirectToOvenOverview()">
+          <p class="best-seller-discount-tag">15%</p>
+          <!--  IMAGE CONTAINER  -->
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/oven1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Forno de Encastre AEG BPE535160 B - Preto</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-discount-price-container">
+              <p class="best-seller-discount-price-tag">679,00€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">577,15€</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="best-seller-preview" onclick="redirectToWashingMachineOverview()">
+          <!--  IMAGE CONTAINER  -->
+          <p class="best-seller-discount-tag">15%</p>
+          <div class="best-seller-image-container">
+            <img class="best-seller-image" src="images/eletronics/washing-machine1.png">
+          </div>
+          <!--  NAME CONTAINER  -->
+          <div class="best-seller-name-container">
+            <p>Máquina de Lavar Roupa BOSCH WGG254Z1ES - Branco</p>
+          </div>
+          <!--  PRICE CONTAINER  -->
+          <div class="best-seller-all-price-container">
+            <div class="best-seller-discount-price-container">
+              <p class="best-seller-discount-price-tag">669,00€</p>
+            </div>
+            <div class="best-seller-price-container">
+              <p class="best-seller-price-tag">499,00€</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ++++++++++++++++++++++++  REVIEWS ++++++++++++++++++++++++ -->
+
+    <div class="review-container">
+
+      <div class="review-title-container">
+        <p class="review-title-text">AVALIAÇÕES CONFIÁVEIS</p>
+      </div>
+
+      <div class="review-slider">
+        <button class="review-button-left">
+          <i class="fa-solid fa-arrow-left review-swipe-left-icon"></i>
+        </button>
+        
+        <div class="review-display">
+          <div class="review-item">
+            <p class="review-text">"Encontrei exatamente o que precisava por um preço formidavel. 
+              Além disso, a entrega foi super rápida e eficiente. Estou muito satisfeito!"
+            </p>
+            <p class="review-name">- Tomás A.</p>
+          </div>
+
+          <div class="review-item">
+            <p class="review-text">"Produtos de excelente qualidade, entregue antes do prazo estimado. 
+              O site é intuitivo e oferece várias opções de pagamento, 
+              o que facilitou bastante. Comprarei novamente, 5 estrelas!"
+            </p>
+            <p class="review-name">- Ana Clara S.</p>
+          </div>
+
+          <div class="review-item">
+            <p class="review-text">"Adorei o atendimento e a variedade de produtos. 
+              Tudo chegou muito bem embalado e em perfeito estado. Com certeza voltarei a comprar!"
+            </p>
+            <p class="review-name">- Ricardo M.</p>
+          </div>
+
+          <div class="review-item">
+            <p class="review-text">"Comprei uma máquina de lavar e estou muito feliz com a minha escolha. 
+              Além do preço justo, recebi um ótimo suporte durante todo o processo. Valeu a pena!"
+            </p>
+            <p class="review-name">- Fernanda R.</p>
+          </div>
+
+          <div class="review-item">
+            <p class="review-text">"O site oferece uma grande diversidade de eletrodomésticos, e o atendimento ao cliente foi impecável. 
+              Recebi o meu pedido em poucos dias, e a qualidade do produto é incrível. Estou muito satisfeito!"
+            </p>
+            <p class="review-name">- Pedro F.</p>
+          </div>
+
+        </div>
+    
+        <button class="review-button-right">
+          <i class="fa-solid fa-arrow-right review-swipe-right-icon"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- ++++++++++++++++++++++++ EXTRAS ++++++++++++++++++++++++ -->
+    
+    <div class="extras-container">
+      <div class="extras-display">
+        <i class="fa-solid fa-truck extra-icon"></i>
+        <p class="extra-title">Entregas Rápidas</p>
+        <p class="extra-text">De segunda a sábado, em <br> toda a nossa gama!</p>
+      </div>
+
+      <div class="extras-display">
+        <i class="fa-solid fa-arrows-rotate extra-icon"></i>
+        <p class="extra-title">Trocas e Devoluções</p>
+        <p class="extra-text">Até um periodo de 15 dias <br> úteis após a entrega! </p>
+      </div>
+
+      <div class="extras-display">
+        <i class="fa-solid fa-headset extra-icon"></i>
+        <p class="extra-title">Apoio ao Cliente</p>
+        <p class="extra-text">Atendimento personalizado<br> sempre que precisar!</p>
+      </div>
+
+      <div class="extras-display">
+        <i class="fa-solid fa-circle-check extra-icon"></i>
+        <p class="extra-title">Produtos Certificados</p>
+        <p class="extra-text">Todos os produtos são testados <br> e aprovados por especialistas!</p>
+      </div>
+    </div>
+
+    <!-- ++++++++++++++++++++++++ FOOTER ++++++++++++++++++++++++ -->
+
+    <div class="footer-container">
+
+      <div class="footer-display-1">
+        <div class="footer-newsletter">
+          <p class="footer-newsletter-title">Adere à nossa Newsletter!</p>
+          <div class="newsletter-search-container">
+            <input class="newsletter-search-bar" type="text" placeholder="Preenche com o teu e-mail">
+
+            <button class="newsletter-button">
+              <i class="fa-regular fa-envelope newsletter-icon"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="footer-socials">
+          <p class="footer-socials-title">Segue-nos nas Redes Sociais!</p>
+          <div class="socials-container">
+            <i class="fa-brands fa-facebook socials-icon"></i>
+            <i class="fa-brands fa-instagram socials-icon"></i>
+            <i class="fa-brands fa-x-twitter socials-icon"></i>
+            <i class="fa-brands fa-tiktok socials-icon"></i>
+            <i class="fa-brands fa-youtube socials-icon"></i>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="line"></div>
+
+      <div class="footer-display-2">
+        <div class="footer-info">
+
+          <div class="footer-info-alfka">
+            <p class="footer-info-title">Alfka</p>
+            <p class="footer-info-text">A nossa história</p>
+            <p class="footer-info-text">Lojas</p>
+            <p class="footer-info-text">Sustentabilidade</p>
+            <p class="footer-info-text">Política de Privacidade</p>
+          </div>
+
+          <div class="footer-info-alfka">
+            <p class="footer-info-title">Serviços</p>
+            <p class="footer-info-text">Instalação de Eletrodomésticos</p>
+            <p class="footer-info-text">Assistência Pós-Venda</p>
+            <p class="footer-info-text">Garantia</p>
+            <p class="footer-info-text">Reparações Certificadas</p>
+          </div>
+
+          <div class="footer-info-alfka">
+            <p class="footer-info-title">Apoio ao Cliente</p>
+            <p class="footer-info-text">Acompanhar Pedido</p>
+            <p class="footer-info-text">Perguntas Frequentes</p>
+            <p class="footer-info-text">Livro de Reclamações</p>
+            <p class="footer-info-text">Contacte-nos</p>
+          </div>
+
+          <div class="footer-info-alfka">
+            <p class="footer-info-title">Compra Online</p>
+            <p class="footer-info-text">Métodos de Pagamento</p>
+            <p class="footer-info-text">Entregas</p>
+            <p class="footer-info-text">Trocas e Devoluções</p>
+            <p class="footer-info-text">Ajuda</p>
+          </div>
+        </div>
+
+
+        <div class="footer-payments">
+          <img class="payment-images-mbway" src="images/logos/mbway-logo.png">
+          <img class="payment-images-multibanco" src="images/logos/multibanco-logo.png">
+          <img class="payment-images-visa" src="images/logos/visa-logo.png">
+          <img class="payment-images-mastercard" src="images/logos/mastercard-logo.png">
+          <img class="payment-images-paypal" src="images/logos/paypal-logo.png">
+        </div>
+      </div>
+
+      <div class="footer-display-3">
+        <div class="footer-legal">
+          <p class="footer-legal-text">© Alfka, Todos os direitos reservados. Alfka – Equipamentos e Serviços, Unipessoal, Lda., com sede em Massamá, Rua das Flores, nº 25, 2745-876 Massamá, NIF nº 512 345 678, com o capital social de 50.000,00 €. Todos os preços incluem IVA à taxa legal em vigor e são válidos apenas na loja online para o dia em que são publicados, salvo erros de publicação. Não dispensa a leitura dos termos e condições.</p>
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- ++++++++++++++++++++++++ SCRIPTS ++++++++++++++++++++++++++++++ -->
+
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    
+    <script src="scripts/main-page-scripts.js"></script>
+    <script src="scripts/general.js" type="module"></script>
+    <script src="scripts/firebase.js" type="module"></script>
+    
+  </body>
+
+</html>

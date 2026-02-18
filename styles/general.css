@@ -1,0 +1,20 @@
+p, label {
+  font-family: "Lato", Arial;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+body {
+  background-color: rgb(247, 247, 247);
+  padding: 0px;
+  margin: 0 auto;
+  max-width: 1900px;
+  height: auto;
+}
+
+@media screen and (max-width: 800px) {
+  .body {
+    max-width: 800px;
+  }  
+}
+
