@@ -11,7 +11,7 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
 
-### Course — Web Development 2024/2025
+### Course - Web Development 2024/2025
 
 *A fully functional e-commerce website for **home appliances**, featuring product browsing, user authentication, cart management, and a seamless checkout experience.*
 
@@ -105,9 +105,8 @@ Each product has a dedicated detail page (e.g., `fridge-page.html`, `oven-page.h
 
 The login page is split into two panels:
 
-**Início de Sessão** — existing users can sign in with their email and password, with a "Forgot password?" link for account recovery.
-
-**Criar Conta** — new users can register by entering their email and continuing to the account creation flow.
+- **Início de Sessão** — existing users can sign in with their email and password, with a "Forgot password?" link for account recovery.
+- **Criar Conta** — new users can register by entering their email and continuing to the account creation flow.
 
 Both flows are powered by **Firebase Authentication**, ensuring secure credential handling and persistent sessions across the website.
 
@@ -174,7 +173,7 @@ flowchart TD
 
 ```bash
 # Clone the repository
-git clone https://github.com/<your-username>/WEB_ALFKA.git
+git clone https://github.com/Tomasalexpt30/Web_Alfka
 
 # Open in your browser
 # Simply open main-page.html in any modern browser
@@ -193,15 +192,10 @@ git clone https://github.com/<your-username>/WEB_ALFKA.git
 | **Firebase Authentication** | User login, registration, and session management |
 
 ## Authors
-
-This project was developed as part of the **Desenvolvimento Web** course in the **Licenciatura em Engenharia Informática** program.
+This project was developed as part of the **Desenvolvimento Web** course in the BSc in Computer Engineering program at Autonomous University of Lisbon.
 
 | Student | Number |
 |---------|--------|
 | Tomás Alexandre | 30011117 |
 
 > **Professor:** Isabel Alvarez
-
----
-
-*© Alfka — Equipamentos e Serviços, Unipessoal, Lda. | NIF nº 512 345 678 | Massamá, Rua das Flores, nº 25, 2745-876 Massamá*
